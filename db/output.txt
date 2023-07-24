@@ -1,0 +1,7 @@
+datetime,name,age,is_employed
+2023-06-22 10:00:00,John Smith,25,True
+2023-06-22 11:00:00,Jane Doe,30,False
+2023-06-22 12:00:00,Michael Johnson,40,True
+2023-06-23 00:00:00,Emma Thompson,35,True
+2023-06-23 00:00:00,James Wilson,28,False
+2023-06-23 00:00:00,Sarah Anderson,42,True

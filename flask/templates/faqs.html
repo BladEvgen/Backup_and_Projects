@@ -1,0 +1,92 @@
+{% extends "components/base.html" %}
+{% block main %}
+<div class="container">
+  <h2 class="mb-4">Часто задаваемые вопросы</h2>
+  
+  <div class="accordion" id="faqAccordion">
+    <!-- Question 1 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Какие услуги предоставляет ваша компания?
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Наша компания предоставляет широкий спектр медицинских услуг, включая консультации врачей-специалистов, лабораторные исследования, профилактические осмотры и многое другое. Для более подробной информации, пожалуйста, ознакомьтесь с нашим прайс-листом.
+        </div>
+      </div>
+    </div>
+    
+    <!-- Question 2 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Каковы цены на ваши услуги?
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Цены на наши медицинские услуги различаются в зависимости от типа услуги и комплексности процедуры. Вы можете ознакомиться с полным прайс-листом на нашем сайте или обратиться в наш офис для получения дополнительной информации.
+        </div>
+      </div>
+    </div>
+    
+    <!-- Question 3 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Как я могу записаться на прием к врачу?
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Для записи на прием к врачу вы можете позвонить нам по указанному на сайте номеру телефона или заполнить онлайн-форму на странице "Запись на прием". Наш менеджер свяжется с вами для уточнения даты и времени визита.
+        </div>
+      </div>
+    </div>
+    
+    <!-- Question 4 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFour">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Какие формы оплаты вы принимаете?
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Мы принимаем оплату наличными и банковскими картами. Также доступна оплата через мобильные платежи. Обратите внимание, что цены указаны в казахстанских тенге (KZT).
+        </div>
+      </div>
+    </div>
+    
+    <!-- Question 5 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFive">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          Каковы рабочие часы вашей клиники?
+        </button>
+      </h2>
+      <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Мы работаем с понедельника по пятницу с 8:00 до 20:00. В субботу наш офис работает с 9:00 до 15:00. Воскресенье - выходной день.
+        </div>
+      </div>
+    </div>
+    
+    <!-- Question 6 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingSix">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+          Какие услуги входят в общий комплекс медицинского осмотра?
+        </button>
+      </h2>
+      <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Наш общий комплекс медицинского осмотра включает в себя осмотр врача-терапевта, лабораторные анализы крови и мочи, ЭКГ, а также ультразвуковое исследование органов брюшной полости. Более подробную информацию о комплексе можно узнать у наших администраторов.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main %}

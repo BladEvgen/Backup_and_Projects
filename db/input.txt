@@ -1,0 +1,4 @@
+Datetime,Name,Age,Is_Employed
+2023-06-23,Emma Thompson,35,TRUE
+2023-06-23,James Wilson,28,FALSE
+2023-06-23,Sarah Anderson,42,TRUE

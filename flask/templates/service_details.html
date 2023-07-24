@@ -1,0 +1,23 @@
+{% extends "components/base.html" %} {% block main %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <img
+        src="{{ url_for('static', filename='img/' + service[5]) }}"
+        alt="{{ service[1] }}"
+        class="img-fluid mb-4"
+      />
+    </div>
+    <div class="col-md-6">
+      <h2 class="mb-3">{{ service[1] }}</h2>
+      <p class="lead">{{ service[4] }}</p>
+      <p class="font-weight-bold">
+        Цена: {{ service[2]|int }} &mdash; {{ service[3]|int }}₸
+      </p>
+      <a href="{{ url_for('services') }}" class="btn btn-secondary"
+        >Вернутся к Услугам</a
+      >
+    </div>
+  </div>
+</div>
+{% endblock main %}

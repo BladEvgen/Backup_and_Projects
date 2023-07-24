@@ -1,0 +1,68 @@
+{% extends "components/base.html" %} 
+{% block main %}
+<div class="container w-25">
+  <div
+    id="carouselExampleCaptions"
+    class="carousel slide fs-4 fw-bold"
+    data-bs-ride="carousel"
+    fs="4"
+    data-bs-interval="2000" 
+  >
+    <div class="carousel-indicators">
+      {% for item in carousel_items %}
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="{{ loop.index0 }}"
+        {%
+        if
+        loop.first
+        %}class="active"
+        aria-current="true"
+        {%
+        endif
+        %}
+        aria-label="Slide {{ loop.index }}"
+      ></button>
+      {% endfor %}
+    </div>
+    <div class="carousel-inner">
+      {% for item in carousel_items %}
+      <div class="carousel-item {% if loop.first %}active{% endif %}">
+        <img
+          src="{{ url_for('static', filename='img/' + item[2]) }}"
+          class="d-block w-100"
+          alt="{{ item[0] }}"
+          width="50%"
+          height="50%"
+        />
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ item['0'] }}</h5>
+          <p class="text-white">
+            {{ item[1][:50] }}{% if item[1]|length > 50 %}...{% endif %}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+{% endblock main%}
