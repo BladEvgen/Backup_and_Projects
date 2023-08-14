@@ -11,12 +11,10 @@
             class="row g-0 border rounded overflow-hidden mb-4 shadow-sm h-md-250 position-relative h-100"
           >
             <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-success text-center"
+              <strong class="d-inline-block mb-2 text-success text-center fs-5"
                 >{{ service[1] }}</strong
               >
-              <h3 class="mb-0">
-                {{ service[2]|int }} &mdash; {{ service[3]|int }}₸
-              </h3>
+
               <div class="mb-1 text-muted text-center">{{ date }}</div>
               <p class="mb-auto">{{ service[4][:57] }}</p>
               <a
@@ -46,7 +44,7 @@
       >
         <div
           class="col p-4 d-flex flex-column position-static"
-          style="backdrop-filter: blur(10px)"
+          style="backdrop-filter: blur(4px)"
         >
           <h3 class="mb-0 text-success text-center">Все Услуги</h3>
           <div class="mb-1 text-muted text-center">{{ date }}</div>

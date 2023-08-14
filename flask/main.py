@@ -1,3 +1,4 @@
+"""My first Flask application"""
 import datetime
 import os
 import sqlite3
@@ -11,30 +12,57 @@ app = Flask(
 )
 
 
-
 class View:
+    """View class for Flask application"""
+
     class Base:
+        """Base class for Flask views"""
+
         @staticmethod
         @app.route("/")
         def home():
+            """display homepage in carousel view
+
+            Returns:
+                render_template: home
+            """
             query_str = "SELECT title, description, image FROM services"
             carousel_items = Database.query(query_str)
-            return render_template(template_name_or_list="home.html", carousel_items=carousel_items)
+            return render_template(
+                template_name_or_list="home.html", carousel_items=carousel_items
+            )
 
         @staticmethod
         @app.route("/about")
         def about():
+            """Displays about page
+
+            Returns:
+                render_template: about
+            """
             return render_template(template_name_or_list="about.html")
 
         @staticmethod
         @app.route("/faqs")
         def faqs():
+            """Display FAQs
+
+            Returns:
+                render_template: faqs
+            """
             return render_template(template_name_or_list="faqs.html")
 
     class Logic:
+        """Full logic of application will be executed here"""
+
         @staticmethod
         @app.route("/services")
         def services():
+            """that function display information about services on the page
+
+            Returns:
+                rendered HTML page: with sql query and current date.
+            """
             query_str = "SELECT id, title, price_low, price_high, description, image FROM services"
             services = Database.query(query_str)
             date = datetime.datetime.now().strftime("%d %b")
@@ -44,8 +72,23 @@ class View:
 
         @staticmethod
         @app.route("/service/<int:service_id>")
-        def service_details(service_id):
-            query_str = "SELECT id, title, price_low, price_high, description, image FROM services WHERE id = ?"
+        def service_details(service_id: int):
+            """that function display information about exactly one service details on the page
+
+            Args:
+                service_id (int): will search for specific service_id
+                in database and display information about it:
+                title,
+                price_low,
+                price_high,
+                description,
+                image.
+
+            Returns:
+                rendered HTML page: with information about service_id
+            """
+            query_str = """SELECT id, title, price_low, price_high, description, image
+            FROM services WHERE id = ?"""
             service = Database.query(query_str, (service_id,), many=False)
 
             if service:
@@ -55,8 +98,21 @@ class View:
 
 
 class Database:
+    """Database class for connecting to the database"""
+
     @staticmethod
     def query(query_str: str, args=(), many=True) -> list | None:
+        """Connect to the database
+
+        Args:
+            query_str (str): Sql query string
+            args (tuple, optional): using for escape from sql injections. Defaults to ().
+            many (bool, optional): if you want to return all from db use many=True,
+            otherwise set False for one row. Defaults to True.
+
+        Returns:
+            list | None
+        """
         local_path = os.path.join(os.path.dirname(__file__), "db")
         os.makedirs(local_path, exist_ok=True)
         with sqlite3.connect(f"{local_path}/database.db") as connection:
@@ -66,13 +122,26 @@ class Database:
                 if many:
                     return cursor.fetchall()
                 return cursor.fetchone()
+            except sqlite3.Error as error:
+                print(f"Error with sqlite3 connection {error}")
+                return None
             except Exception as error:
+                print(f"Oop something went wrong {error}")
                 return None
 
 
 class DatabaseTools:
+    """that class needs to be used when you want to work with database"""
+
     @staticmethod
     def create_db():
+        """create a new database
+        with id,
+        title,
+        price_low,
+        price_high,
+        description,
+        image"""
         Database.query(
             """
             CREATE TABLE IF NOT EXISTS services (
@@ -88,6 +157,7 @@ class DatabaseTools:
 
     @staticmethod
     def drop_db():
+        """drop the database"""
         Database.query("DROP TABLE IF EXISTS services")
 
     @staticmethod
@@ -98,18 +168,21 @@ class DatabaseTools:
         description: str,
         image=None,
     ):
+        """insert service into database
+
+        Args:
+            title (str): title of service
+            price_low (int | float): lower price of the service
+            price_high (int | float): higher price of the service
+            description (str): description for that service
+            image (_type_, optional): url or path to image. Defaults to None.
+        """
         query_str = """
         INSERT INTO services (title, price_low, price_high, description, image)
-        VALUES (:title, :price_low, :price_high, :description, :image)
+        VALUES (?, ?, ?, ?, ?)
         """
 
-        service_data = {
-            "title": title,
-            "price_low": price_low,
-            "price_high": price_high,
-            "description": description,
-            "image": image,
-        }
+        service_data = (title, price_low, price_high, description, image)
 
         Database.query(query_str, service_data)
 
@@ -122,19 +195,22 @@ class DatabaseTools:
         description: str,
         image=None,
     ):
+        """This function is used to update a service by its id in the database
+
+        Args:
+            service_id (int): item id of the service which will be updated
+            title (str): new title of the service
+            price_low (int | float): lower price of the service
+            price_high (int | float): higher price of the service
+            description (str): description for that exactly service
+            image (_type_, optional): url to image Defaults to None.
+        """
         query_str = """
         UPDATE services
-        SET title = :title, price_low = :price_low, price_high = :price_high, description = :description, image = :image
-        WHERE id = :service_id
+        SET title = ?, price_low = ?, price_high = ?, description = ?, image = ?
+        WHERE id = ?
         """
-        service_data = {
-            "service_id": service_id,
-            "title": title,
-            "price_low": price_low,
-            "price_high": price_high,
-            "description": description,
-            "image": image,
-        }
+        service_data = (title, price_low, price_high, description, image, service_id)
 
         Database.query(query_str, service_data)
 
