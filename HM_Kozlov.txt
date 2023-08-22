@@ -1,0 +1,807 @@
+
+Требования
+
+REQUIREMENTS:
+Ты должен знать:
+
+Python
+
+Fast API
+
+Docker
+
+PostgreSQL
+
+Ubuntu
+
+Знание RabbitMQ и RateLimiter будет твоим плюсом. Весь процесс работы идет через Gitlab (локальная версия) и настроены процессы Ci/Cd (автодеплой).
+
+Ты подойдешь, если:
+
+Всегда стараешься выполнять свои задачи вовремя и качественно
+
+Можешь прийти на помощь товарищам по команде
+
+Хочешь быть у истоков крутого проекта
+
+Стремишься к профессиональному и личностному росту
+
+Любишь предлагать крутые идеи
+
+
+
+
+REQUIREMENTS:
+
+Опыт программирования на Python от 3 лет;
+Знание среды разработки PostgreSQL;
+Опыт работы с API, Pandas, XML, XLS;
+Умение рассмотреть задачу со всех сторон;
+Отличная самоорганизация;
+Приветствуется опыт Flask, Django.
+
+
+
+REQUIREMENTS:
+
+Уверенное знание возможностей Python 3.8 и выше;
+Реализовано не менее двух проектов на Django 3 и выше;
+Навык проектирования реляционных БД (связи, индексы), написание sql-запросов;
+Навык работы с системой контроля версий git;
+Понимание архитектуры современных веб-приложений (backend, frontend, API и пр.);
+Базовое понимание Docker (Dockerfile, слои, registry, docker-compose);
+Опыт в построении REST API, желателен опыт с GraphQL;
+Пригодится понимание html-верстки, синтаксиса java script;
+Умение решать конфликты зависимостей пакетов, цикличного импорта;
+Умение гуглить и искать решение в англоязычной документации;
+Умение быстро погружаться в задачу и эффективно решать ее;
+Готовность иногда выполнять доработки по устному ТЗ;
+Объективная оценка сроков этапов проекта в своей зоне ответственности;
+Коммуникативность, умение взаимодействовать с командой, инициативность, желание улучшать процессы, нацеленность на результат.
+
+
+
+
+REQUIREMENTS:
+Python;
+FastAPI;
+PostgreSQL;
+Kafka;
+Kubernetes
+Уверенные знания Python, ООП;
+Опыт работы с распределенной системой контроля версий git;
+Способность самостоятельно определять и соблюдать сроки задач;
+Умение и желание писать качественный, читабельный, поддерживаемый и документированный код.
+Умение писать тестируемый поддерживаемый код;
+Опыт в разработке асинхронного кода;
+Умение работать в команде согласно выстроенным процессам;
+Разбираться в сервисной архитектуре;
+Умение писать и оптимизировать сложные запросы к postgres.
+
+
+
+
+REQUIREMENTS:
+Опыт коммерческой разработки от 3-х лет;
+Уверенное знание Python 3.8+ и хотя бы одного из веб-фреймворков (Django (DRF), Flask, FastAPI);
+Отличное знание SQL (MySQL, PostgreSQL);
+Опыт командной разработки с использованием Git, CI/CD.
+
+Будет плюсом, если:
+есть опыт работы с npm, умеешь локально запускать фронтенд;
+знаешь Docker;
+знаешь SQLAlchemy и работаешь с ней;
+есть опыт настройки серверов (понимаешь работу nginx, apache).
+
+
+
+REQUIREMENTS:
+
+от 4 лет опыта разработки на Python 3;
+опыт работы с асинхронными фреймворками;
+опыт работы с микросервисной архитектурой и монолитом;
+есть общее представление об алгоритмах;
+осознанное написание сложных SQL запросов;
+опыт работы с Redis;
+вы стремитесь придумать оптимальное решение, умеете его обсуждать и можете обосновать;
+вы пишете тесты на любой тестируемый код;
+PEP20 ваше любимое произведение.
+Cтек технологий:
+
+- python 3.8+
+- Fastapi
+- SQLAlchemy
+- pydantic
+- redis
+- sphinxsearch
+- postgresql
+- docker
+- docker-compose
+- nginx
+
+
+
+REQUIREMENTS:
+Обязанности:
+Разработка web-проектов на Flask, Django;
+Разработка парсеров, чат-ботов;
+Требования:
+Уверенное знание Python;
+Умение писать читабельный и оптимальный код;
+Понимание принципов ООП;
+Знание основных паттернов программирования;
+
+Будет плюсом, если есть опыт работы с:
+Postgres, Redis;
+
+
+REQUIREMENTS:
+
+Есть опыт работы с Python 3.8, asyncio (async/await), веб-фреймоворками (aiohttp/fastAPI/flask/Django), ORM (peewee, SQLAlchemy, Django ORM).
+Знаешь классические алгоритмы и структуры данных, сортировки, алгоритмы на графах, динамическое программирование
+Понимаешь, что такое асинхронное программирование, как оно устроено в языке Python и можешь работать с микросервисной архитектурой.
+Разбираешься в новых библиотеках, пишешь тесты, в том числе нагрузочные, знаешь принципы работы очередей сообщений (RabbitMQ, ActiveMQ)
+
+
+
+REQUIREMENTS:
+Опыт коммерческой разработки.
+Опыт работы python программистом более 3х лет.
+Отличное знание Python(>3.6), ООП, паттернов проектирования.
+Наличие реализованных проектов на Python.
+Опыт разработки Rest API.
+Знание реляционных СУБД и языка SQL
+Опыт работы в ОС Linux (Debian/Ubuntu) на уровне пользователя, также базовые знания на уровне программиста.
+Знанием систем контроля версий и умение с ними работать(git).
+Английский язык на уровне свободного чтения технической документации.
+Опыт использования RabbitMQ, Apache Kafka и других очередей и брокеров является плюсом
+Что нужно делать:
+
+Условия:
+
+Возможности для профессионального развития.
+Командная работа, общение и обмен опытом.
+Очень интересные проекты - победители международных конкурсов (Умное сельское хозяйство, Умное производство, BI аналитика, Индустрия 4.0)
+SCRUM подход
+Инструментарий Jira, Github, VS Code
+
+REQUIREMENTS:
+Опыт разработки Backend (Python) приложений от 3-х лет;
+
+Опыт разработки с использованием Django и Django REST Framework от 2-х лет;
+
+Знание ООП, паттернов проектирования, SOLID;
+
+Опыт работы с Docker;
+
+Опыт работы с одной или несколькими реляционными (Oracle DB, PostgreSQL, MySQL) и NoSQL (MongoDB, CouchDB, Redis, Neo4j) БД;
+
+Уверенное владение системой git и Bitbucket/Gitlab;
+
+Опыт работы с ПО для работы команд разработки: Jira, Confluence, Yandex tracker;
+
+Знание ОС Linux на уровне команд bash;
+
+Алгоритмическое мышление.
+
+Будет плюсом:
+
+Знание Python asyncio. Опыт применения асинхронных фреймворков/библиотек под Python;
+Опыт разработки различных request-reply API (REST, graphQL, gRPC) и message-based API;
+(AMQP, Kafka, MQTT);
+Опыт разработки интеграционных решений на основе API;
+Опыт разработки распределенных решений в концепции микросервисной архитектуры;
+Опыт использования k8s;
+Опыт использования Websocket;
+Опыт системного программирования под ОС Linux;
+Знание HTML, CSS, JavaScript.
+
+Опыт коммерческой разработки.
+Опыт работы python программистом более 3х лет.
+Отличное знание Python(>3.6), ООП, паттернов проектирования.
+Наличие реализованных проектов на Python.
+Опыт разработки Rest API.
+Знание реляционных СУБД и языка SQL
+Опыт работы в ОС Linux (Debian/Ubuntu) на уровне пользователя, также базовые знания на уровне программиста.
+Знанием систем контроля версий и умение с ними работать(git).
+Английский язык на уровне свободного чтения технической документации.
+Опыт использования RabbitMQ, Apache Kafka и других очередей и брокеров является плюсом
+
+
+REQUIREMENTS:
+Опыт веб-разработки от одного года, программирования не менее пяти лет.
+Умение разбираться в чужом коде.
+Опыт разработки сложных проектов.
+Обязателен опыт работы с django, python 3.7, djangorestframework
+Знание SQL (в частности, PostgreSQL) и умение оптимизировать запросы.
+Умение составлять сложные SQL-запросы
+Знание регулярных выражений.
+Знание HTML/CSS/JS на базовом уровне.
+Английский язык на техническом уровне.
+
+
+REQUIREMENTS:
+
+Strong proficiency in Rust programming language.
+Experience with Solana blockchain development.
+Familiarity with blockchain concepts and protocols, such as consensus algorithms and smart contracts.
+Solid understanding of options and financial products.
+Strong mathematical skills.
+Excellent problem-solving skills.
+Familiarity with version control tools such as Git.
+Ability to work independently as well as in a team environment.
+Strong written and verbal communication skills.
+Experience in FinTech is a big plus.
+
+REQUIREMENTS:
+стек используют.
+
+python: FastAPI, pytest, aiohttp
+
+REST API
+
+Postgresql, MongoDB, ClickHouse
+
+RabbitMQ, Kafka
+
+Docker
+
+AWS
+
+Kubernetes
+
+Prometheus, Grafana
+
+mypy, flake8, pylint, bandit, radon
+
+Gitlab CI/CD
+
+OpenAPI
+
+
+JIRA, Confluence
+Образование – высшее
+Опыт работы в крупнейших мировых IT компаниях ( Google, Facebook, Microsoft, Amazon, Авито, Озон)
+Опыт работы в должности – более 5 лет
+Опыт работы руководителем (от 100 чел)
+Отличное понимание бизнес процессов компании
+Scrum, Jira
+
+
+REQUIREMENTS:
+Strong proficiency in Rust programming language.
+Experience with Solana blockchain development.
+Familiarity with blockchain concepts and protocols, such as consensus algorithms and smart contracts.
+Solid understanding of options and financial products.
+Strong mathematical skills.
+Excellent problem-solving skills.
+Familiarity with version control tools such as Git.
+Ability to work independently as well as in a team environment.
+Strong written and verbal communication skills.
+Experience in FinTech is a big plus.
+Experience with real-time trading systems and financial instruments.
+Technology stack
+
+Solana/Rust
+IaC (CDK and CFN)
+CI/CD (GitLab, GitHub, CodeBuild, and CodePipeline)
+Typescript and Python
+Linux/Windows
+
+REQUIREMENTS:
+
+A passion for building a trading product that brings the world together
+Higher education in STEM
+4 or more years of commercial software development using Python and excellent knowledge of its stack
+Experience with projects using asyncio, aiohttp, fastAPI or frameworks such as sanic and tornado
+Good experience with PostgreSQL
+Solid knowledge of general computer science and working experience with various system designs and integrational patterns
+Solid experience with ORM and DBMS, including database architecting
+Cultivate DevOps culture and usage of relevant tools–solid experience with operating systems, networking models, virtualization, and containerization
+Cover your software by unit tests, having experience in integrational and load tests
+Ability to use advanced English for different work & business purposes
+
+Advantages:
+
+Commercial experience with Go, Java, or JavaScript
+Experience acting as a code reviewer
+Experience in debugging, profiling, and code optimizations
+Highload, concurrency, and multithreading backend systems development
+Microservice development experience
+
+
+REQUIREMENTS:
+Key Responsibilities:
+
+•Design, develop, test, and maintain software applications and solutions
+
+•Collaborate with cross-functional teams, including data scientists, analysts, and
+
+product managers, to deliver high-quality software products
+
+•Utilize expertise in Node.js, Vue.js, Python, Elasticsearch, MongoDB and unstructured
+
+data to design and implement software solutions
+
+•Participate in code reviews, bug tracking, and other quality assurance activities to
+
+ensure that software meets high standards of quality and reliability
+
+•Stay up-to-date with emerging trends and technologies in the field of software
+
+development, and share that knowledge with the team
+
+REQUIREMENTS:
+Qualifications
+
+BSc, MSc or PhD in Mathematics, Finance, IT or related field;
+Minimum of 3 years of experience in quantitative analysis, preferably in finance or trading;
+Knowledge and experience with Python for data analysis: numpy, pandas, sklearn, etc.
+Strong knowledge of probability theory and financial modelling, algorithms and data structures;
+Ability to self-manage, research and understand mathematically complex areas of quantitative finance on your own;
+Understanding how financial markets work;
+Excellent analytical and problem-solving skills;
+Strong communication and collaboration skills.
+
+
+REQUIREMENTS:
+Ideally, we are looking for someone who has:
+
+Fluent English (both written and verbal form)
+3+ years in a development role
+Python
+
+Git
+
+Data analysis using R or SQL
+
+Experience in genomics - is a plus
+
+Applied mathematics, Bayesian statistics, machine learning, optimization algorithms, and bioinformatics experience a plus
+
+
+REQUIREMENTS:
+
+
+3+ years of experience in the field of machine learning;
+
+solid knowledge of classic ML (tabular data) and algorithms (regressions, trees, boosting, etc.);
+
+good expertise in different areas of ML (recommender systems, text data, clustering, etc.);
+
+Tensorflow, PyTorch;
+
+strong knowledge of Python (Jupyter notebooks are not enough) so that you can build and deploy pipelines with tools like Argo / Airflow / etc.;
+
+great SQL expertise;
+
+Google Cloud;
+
+experience in life science is a big plus;
+
+experience with medical data is a plus;
+
+Intermediate+ English is a plus (at least, you should be able to have written conversations with stakeholders).
+
+REQUIREMENTS:
+
+Опыт коммерческой разработки на next.js и node.js от 3 лет и выше. Фронт на react/next.js, бекенд на node (фреймворк hapi) и python (django).
+
+Требования к навыкам:
+
+необходимые : nextjs, hapi или express;
+иметь опыт работы с архитектурой высоконагруженных сервисов обязательно:
+У нас продукт с кучей микросервисов, несколько баз данных, несколько брокеров сообщений. Вопрос: на сколько вы свободно ориентируетесь в современной архитектуре, так как нужен человек который имеет хотя бы представление для чего какой сервис нужен и тд;
+
+дополнительные : mongo, брокеры сообщений kafka, rabbitmq, протокол grpc, AWS, neo4j;
+Будущему сотруднику предстоит общаться на английском (устно/письменно, от В2);
+
+
+REQUIREMENTS:
+
+
+Высшее техническое образование;
+
+От 3 лет в проектах по разработке, включающих написание бизнес-логики продуктов/инфраструктуры/написание алгоритмов;
+
+Опыт в проектах по разработке фронтенда (Django, Flask, создание веб-интерфейсов) или работы в ML/DL (pytorch, TF, keras, asure, data science);
+
+Оптимальный код;
+
+Будет преимуществом: знания в ML, умение в С++;
+
+Опыт enterprise разработки на микросервисной архитектуре;
+
+Cтек: Python: Numpy, Pandas; Git
+
+
+REQUIREMENTS:
+
+1. In-depth knowledge of: Machine Learning, Deep Learning, Training customisation, ML frameworks.
+
+2. Known architectures: Transformer, LLM, GNN, Autoencoders.
+
+3. Languages: Python, Rust, C++
+
+4. Frameworks: PyTorch, TensorFlow.
+
+5. Bachelor’s degree or higher.
+
+6. English C1 or higher.
+
+
+REQUIREMENTS:
+
+Обладаешь опытом:
+в разработке - от 3 лет;
+в руководстве командой - от 1-1.5 лет.
+Обладаешь навыками:
+Обязательно:
+Python 3;
+Django (DRF);
+SQL;
+PosgreSQL;
+Docker;
+unittest/pytest;
+опыт оптимизации нагрузки системы;
+опыт в декомпозиции и описании задач;
+опыт разработки асинхронного приложения;
+английский язык на уровне, достаточном для чтения технической документации;
+базовое понимание работы современного фронтенда - SPA, SSR/CSR;
+работа с внутрикомандными процессами разработки;
+опыт работы с конфликтами между сотрудниками.
+Желательно:
+k8s;
+опыт разработки микросервисной архитектуры;
+опыт в написании интеграционных межсервисных тестов;
+опыт работы с веб-фреймворками: Flask, FastAPI, aiohttp;
+опыт разработки функционала систем управления обучением - LMS
+
+
+REQUIREMENTS:
+2+ года опыта DevOps/SRE.
+Опыт работы с Kubernetes, GitLab CI и Ansible.
+Опыт работы с Unix системами (у нас Ubuntu) и консолью.
+Понимание основ TCP/IP для построения сетей, работы веб-сервисов, REST API и gRPC.
+Опыт выполнения диагностики, включая интерпретацию выходных данных Ps, Top, Strace, Perf и TCPDump.
+Понимание того, как пользовательские приложения взаимодействуют с операционной системой, включая знакомство с системными вызовами, процессами и потоками.
+Готовность строить высоконагруженные системы и понимание, как это сделать.
+Понимание отказоустойчивости и масштабирования сервисов.
+Как преимущество:
+
+Опыт работы с AWS и Terraform.
+Опыт программирования на Python / Golang или желание научиться этому.
+
+
+REQUIREMENTS:
+
+At least 4 years of experience building software with Python and expert-level Python skills
+Experience with asyncio, aiohttp, fast API or frameworks like sanic and tornado
+Strong experience with PostgreSQL, experience with ORM and DBMS, including database architecture
+A degree in science, tech, engineering or math
+Great English skills for work and business
+
+
+REQUIREMENTS:
+
+Отличные знания Python;
+Разнообразный опыт работы с asyncio, aiohttp, FastAPI;
+Большой опыт разработки высоконагруженных и распределенных систем;
+Значительный опыт работы с SQL и NoSQL, такими как PostgreSQL, Redis, Cassandra, Kafka, RabbitMQ, ElasticSearch, ClickHouse;
+Знание базовых паттернов и идиом;
+Опыт работы с REST API;
+Опыт работы c Git;
+Знание Английского языка на уровне чтения технической документации;
+Плюсом будет опыт разработки на GoLang.
+
+
+REQUIREMENTS:
+
+Опыт промышленной разработки на python в части работы с данными от 3-х лет
+Навыки коммуникации с заказчиками и контрагентами
+Понимание принципов работы data science проектов
+Опыт работы с Nifi, Airflow, PostgreSQL, ClickHouse
+Умение писать сложные sql-запросы
+Понимание принципов работы с аналитическими и транзакционными базами данных
+Желателен опыт руководства
+
+
+
+
+
+REQUIREMENTS:
+Внутри мы используем гибкие практики: Scrum, Kanban, OKR. Развиваем devops на базе GitLab CI/CD.
+
+Стек используемых технологий:
+
+Python 3, FastAPI, Django, JS, Node.js, Vue.JS
+Kotlin, Swift, Swift UI
+MySQL, PostgreSQL, Elasticsearch, Clickhouse, Redis
+Docker, Kubernetes
+GitLab для кода
+YandexCloud для всего остального.
+
+
+REQUIREMENTS:
+знаете Python и готовы изучать другие языки программирования (Golang)
+имеете опыт работы с реляционными базами данных и брокерами данных
+умеете писать надежный код, работать в команде
+уделяете внимание качеству кода, его тестируемости.
+Будет плюсом:
+
+знаете языки программирования Golang или Java, SQL, bash
+работали с Kubernetes или Docker или хотите научиться их использовать
+строили и поддерживали отказоустойчивые системы.
+Технологический стек:
+
+Python, Golang
+PostgeSQL, ClickHouse, RabbitMQ
+VictoriaMetrics, Jaeger, ELK
+OpenShift/Kubernetes.
+
+
+REQUIREMENTS:
+3+ years of relevant work experience in an IT ops role;
+
+Strong understanding of the Linux operating system, including network and system configuration, kernel internals, scheduling, performance tuning;
+
+Understanding of networking concepts and technologies;
+
+Proven hands-on experience with configuration management system Ansible and scripting languages (Bash/Python);
+
+Familiarity with the following technologies: GitLab, Clickhouse, Systemd, Iptables, Docker, Openvpn, Zabbix, IPSEC, Prometheus, Grafana, Loki, ELK, PostgreSQL, KVM/Libvirt, Proxmox, Amazon EC2 and KDB;
+
+Strong communication skills;
+
+A deep sense of ownership and urgency, detail-oriented approach to operations.
+
+Bonus Points:
+
+Experience in the HFT, Algorithmic Trading or related areas
+
+REQUIREMENTS:
+Есть опыт работы с Python 3.8, asyncio (async/await), веб-фреймоворками (aiohttp/fastAPI/flask/Django), ORM (peewee, SQLAlchemy, Django ORM).
+Знаешь классические алгоритмы и структуры данных, сортировки, алгоритмы на графах, динамическое программирование
+Понимаешь, что такое асинхронное программирование, как оно устроено в языке Python и можешь работать с микросервисной архитектурой.
+Разбираешься в новых библиотеках, пишешь тесты, в том числе нагрузочные, знаешь принципы работы очередей сообщений (RabbitMQ, ActiveMQ)
+
+REQUIREMENTS:
+
+Middle-Senior level candidate should be proficient in at least one of dev methodologies:
+
+1. Software Engineering: Python (intermediate), SQL (pre-intermediate), Shell, OOP, Algorithms and Data Structures, Web Development, etc.
+
+2. Data Engineering: Python (pre-intermediate), SQL (intermediate), ELT/ETL, Query Optimization, Data Architecture, Data Analysis, etc.
+
+3. Service Reliability Engineering: Python (pre-intermediate), SQL (pre-intermediate), Shell, DevOps, CI/CD, Ansible/Terraform, etc.
+
+Python and SQL are required.
+
+Any stack- and tasks-related experience would be an advantage, but a strong foundation is more important. The foundation must be in: Python and/or SQL and Algorithms and/or Data Engineering.
+
+REQUIREMENTS:
+
+Знания языка Python на продвинутом уровне
+Знание возможностей Python и экосистемы Python (модули, IDE, shell & bash)
+Опыт настройки среды Linux / Unix с помощью инструментов Python
+Подбор оптимальных решений/алгоритмов
+Навыки оптимизации систем
+Навыки решения технических проблем
+Требования :
+
+Опыт построения архитектуры распределенных систем
+Опыт и желание внедрения улучшений программного обеспечения и предложения улучшений
+Опыт и знание Async, asyncio, принципы распределенных систем.
+Хорошие навыки DevOps на Linux/Unix особенно kubernetes.
+Опыт работы с AWS, Google Cloud
+Опыт в других языках программирования/платформах: C++, Java, Go
+Аглийский язык не менее В1
+
+REQUIREMENTS:
+•Bachelor's or Master's degree in Computer Science or a related field
+
+•3+ years of experience in Node.js, Vue.js, Python
+
+•Basic Knowledge in Elasticsearch, MongoDB
+
+•Experience with software design patterns, algorithms, and data structures
+
+•Familiarity with Agile methodologies and DevOps practices
+
+•Strong problem-solving and analytical skills, with the ability to diagnose and solve
+
+complex technical problems
+
+•English is B1
+
+REQUIREMENTS:
+Опыт backend разработки минимум от 5х лет на Python
+
+Хорошее знание классических алгоритмов и структур данных
+
+Опыт с Kubernetes
+
+Опыт с высоконагруженными сервисами, веб, FastAPI, SQLAlchemy, asyncio
+PG, Redis, Docker, OKD, kafka, ActiveMQ
+
+Будет плюсом:
+
+Опыт работы над платформенными компонентами продуктов(IAM, Billing, Security)
+
+Опыт тестирования (модульные тесты, тестирование производительности)
+
+Опыт проектирования приложений (DDD, EDD, etc)
+
+Понимание того, как устроена инфраструктура (OSI, TCP/IP, распределенные высоконагруженные хранилища, высоконагруженные отказоустойчивые базы данных, etc)
+
+Знание современных подходов к аутентификации и авторизации пользователей
+
+REQUIREMENTS:
+высшее техническое профильное образование;
+опыт разработки под Linux – от 4-х лет;
+персональный опыт программирования – от 7-ми лет;
+уверенное знание и опыт разработки: Python и PostgreSQL и, желательно, других реляционных СУБД;
+желателен опыт работы в среде Visual Studio;
+приветствуется знания/опыт C/C++, .NET, JavaScript, Django;
+приветствуется опыт интеграции кода, написанного на других языках программирования в код программы на Python;
+понимание принципов построения архитектуры необходимо;
+приветствуется опыт реализации SW-проектов в области телекоммуникаций с Заказчиками в сфере промышленности, энергетики, компаний телеком - отрасли;
+опыт разработки ПО с документированием (ТЗ, архитектура, спецификация);
+высокие аналитические способности, умение работать в команде, читать и разбираться в чужом коде, инициативность, коммуникабельность и открытость к коллегам, безусловная доброжелательность.
+
+
+
+REQUIREMENTS:
+Уверенные знания Python 3.7 + Spark 2.4 / Spark 3.0 (структуры данных, алгоритмы, концепции языка);
+Уверенные знания SQL: агрегации, джойны, вложенные запросы, индексы, оптимизации запросов;
+Глубокие теоретические знания стека технологий и практический опыт (Spark, Hadoop, Hive; Kubernetes (K8S));
+Linux;
+Опыт проектирование БД, понимание концепций OLAP и OLTP;
+Опыт оптимизаций sql-запросов и понимание оптимизаций на уровне spark catalyst.
+На что ещё смотрим:
+
+Опыт работы с Airflow и другими подобными инструментами для запуска регулярных задач;
+Опыт Devops (Docker, Gitlab-CI, настройка окружения на серверах и др.);
+Опыт разработки сервисов (Flask, Django, Asyncio и др.);
+Опыт проектирования высоконагруженных приложений и/или приложений работы с большими данными;
+Опыт использования машинного обучения;
+Опыт разворачивания, настройки мониторинга и передача на поддержку разработанных решений;
+Pytest/Unitest;
+Опыт работы с такими базами данных как PostgresQL, Greenplum, Clickhouse, SQLAlchemy.
+
+
+REQUIREMENTS:
+Python: 3+ лет опыта;
+Опыт работы с Composition API;
+Опыт работы с Graphql, PostgreSQL, Flask;
+Знание Git;
+Опыт работы с Web 3.0
+Понимание и умение применять паттерны программирования;
+Умение оценивать объем и сроки работ;
+Владение английским языком на уровне чтения технической документации;
+
+стек
+
+Frontend: VueJS (TypeScript) (Vue 3 + Composition API)
+
+Взаимодействие: GraphQL (Ariadne)
+
+Backend: Python, Flask
+
+База Данных: PostgreSQL
+
+
+REQUIREMENTS:
+
+опыт разработки на Python3;
+
+опыт работы с Django;
+
+опыт работы с Git;
+
+опыт работы с ОС семейства Linux;
+
+уверенное знание SQL;
+
+базовое понимание frontend-разработки (html, css, javascript);
+
+нацеленность на качество решения задачи (умение задавать правильные вопросы, предлагать варианты решения);
+
+опыт написания тестов с использованием unittest или pytest;
+
+знание английского языка для чтения документации.
+
+Будет плюсом:
+
+опыт работы с Django Rest Framework или аналогичным фреймворком;
+
+опыт работы с очередями задач (Django-RQ или Celery);
+
+опыт работы с Redis или другим in-memory хранилищами;
+
+опыт работы с ClickHouse;
+
+желание развиваться и брать на себя роль наставника, если потребуется;
+
+высшее техническое образование.
+
+
+REQUIREMENTS:
+ Опыт работы в создании маркетплейсов и интернет-магазинов (желательно в сфере строительства) не менее 5 лет.
+
+- Опыт работы с Python/JavaScript, базами данных (PostgreSQL, MongoDB), HTML/CSS.
+
+- Опыт работы с фреймворками Django, Flask, React, Vue.js.
+
+- Знание систем контроля версий (Git).
+
+- Уверенное владение английским языком (письменное и устное
+
+
+REQUIREMENTS:
+опыт коммерческой разработки на Python от 6-ти лет;
+опыт разработки на AIOHTTP/ FastAPI/Sanic от 2-х лет;
+опыт разработки с использованием Django/Flask от 2-х лет;
+умение писать SQL-запросы без использования ORM;
+глубокие знания по БД PostgreSQL (понимание преимуществ и недостатков индексов БД);
+знание и умение проектирования архитектуры, базы, архитектуры таблиц;
+знание Linux на уровне пользователя.
+Будет плюсом:
+
+умение работать с брокер-сообщениями Kafka/Rabbit в силу специфики проекта как такового
+
+REQUIREMENTS:
+опыт коммерческой разработки на Python;
+понимание принципов ООП;
+знание основных и архитектурных паттернов программирования;
+опыт работы с системами контроля версий (GIT);
+опыт работы с базами данных;
+участие в разработке высоконагруженных проектов;
+навыки управления командой разработки;
+Плюсом будет:
+
+знакомство с HTML, CSS, JavaScript, С++
+
+
+
+REQUIREMENTS:
+быть готовым переехать в Москву, так как планируем перейти офис.
+Опыт в разработке Python + Django не менее 3 лет;
+Высшее образование;
+Python Django, FastApi;
+PostgreSQL;
+Владение VCS Git;
+Понимание и применение принципов и практик чистого кода;
+Kafka, RabbitMQ;
+Event-driven подхода;
+REST, RPC, SOAP;
+Иметь представление о TDD;
+Умение работать с Docker;
+
+
+REQUIREMENTS:
+Опыт работы от 3х лет
+Обязательно глубокое знание Python, SQL, HTML, CSS, Javascript
+Опыт работы с Django, Vue
+Знание Docker, Docker Compose, Gitlab-CL
+Умение читать и разбирать чужой код
+Уверенное владение и опыт администрирования Linux
+Умение самостоятельно общаться с заказчиком, анализировать и формулировать требования , согласовывать варианты решения задач
+
+
+
+REQUIREMENTS:
+Уверенное знание Python;
+Numpy, Pandas, Pytorch;
+Опыт многопоточной и асинхронной разработки;
+Опыт работы с брокерами сообщений (RabbitMQ);
+СУБД: SQL (MySQL), умение работать без использования ORM;
+Linux / bash;
+Pytest;
+FastApi;
+Git;
+Английский - Средне-продвинутый.
+Преимуществом будет:
+
+Опыт работы с ML/AI проектами;
+Знание Deep Learining, Computer Vision, OpenCV.
