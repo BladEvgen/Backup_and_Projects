@@ -77,6 +77,7 @@ def download_images_multiprocess():
     with Pool(processes=10) as pool:
         pool.map(download_image_multiprocess, range(10))
 
+
 @execution_time
 def sync_download_images_threaded():
     def download_image(index):
@@ -98,7 +99,7 @@ if __name__ == "__main__":
     sync_button = tk.Button(
         root,
         text="Sync Download",
-        command=sync_download_images,
+        command=lambda: threading.Thread(target=sync_download_images).start(),
         font=("Arial Bold", 20),
     )
     sync_button.pack()
@@ -106,7 +107,7 @@ if __name__ == "__main__":
     threaded_button = tk.Button(
         root,
         text="Threaded Download",
-        command=sync_download_images_threaded,
+        command=lambda: threading.Thread(target=sync_download_images_threaded).start(),
         font=("Arial Bold", 20),
     )
     threaded_button.pack()
@@ -114,7 +115,9 @@ if __name__ == "__main__":
     async_button = tk.Button(
         root,
         text="Async Download",
-        command=lambda: asyncio.run(async_download_images()),
+        command=lambda: threading.Thread(
+            target=lambda: asyncio.run(async_download_images())
+        ).start(),
         font=("Arial Bold", 20),
     )
     async_button.pack()
@@ -122,7 +125,7 @@ if __name__ == "__main__":
     multiprocess_button = tk.Button(
         root,
         text="Multiprocess Download",
-        command=download_images_multiprocess,
+        command=lambda: threading.Thread(target=download_images_multiprocess).start(),
         font=("Arial Bold", 20),
     )
     multiprocess_button.pack()
