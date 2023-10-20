@@ -1,8 +1,7 @@
-"""My first Flask application"""
 import datetime
 import os
 import sqlite3
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(
     __name__,
@@ -13,109 +12,201 @@ app = Flask(
 
 
 class View:
-    """View class for Flask application"""
+    @app.route("/")
+    def home():
+        return render_template("home.html")
 
-    class Base:
-        """Base class for Flask views"""
+    @app.route("/about")
+    def about():
+        return render_template("about.html")
 
-        @staticmethod
-        @app.route("/")
-        def home():
-            """display homepage in carousel view
+    @app.route("/faqs")
+    def faqs():
+        return render_template("faqs.html")
 
-            Returns:
-                render_template: home
-            """
-            query_str = "SELECT title, description, image FROM services"
-            carousel_items = Database.query(query_str)
-            return render_template(
-                template_name_or_list="home.html", carousel_items=carousel_items
+    @app.route("/signup")
+    def signup():
+        return render_template("signup.html")
+
+    @app.route("/login")
+    def login():
+        return render_template("login.html")
+
+    @staticmethod
+    def convert_salary(salary: str):
+        if isinstance(salary, float):
+            return salary
+        if isinstance(salary, str):
+            try:
+                salary = float(salary.replace(",", ""))
+            except Exception as e:
+                salary = 0.0
+                print(str(e))
+            return salary
+
+    @app.route("/add_vacancy", methods=["GET", "POST"])
+    def add_vacancy():
+        if request.method == "POST":
+            name = str(request.form.get("name"))
+            title = str(request.form.get("title"))
+            location = str(request.form.get("location"))
+            iin = str(request.form.get("iin"))
+            email = str(request.form.get("email"))
+            description = str(request.form.get("description"))
+
+            salary_input = request.form.get("salary")
+
+            salary = View.convert_salary(salary_input)
+
+            date_posted = request.form.get("date_posted")
+            try:
+                date_posted = datetime.strptime(date_posted, "%d-%m-%Y").strftime(
+                    "%Y-%m-%d"
+                )
+            except Exception as e:
+                print(str(e))
+                pass
+                date_posted = datetime.datetime.now().strftime("%Y-%m-%d")
+
+            DatabaseTools.insert_vacancy(
+                name, title, location, iin, email, description, salary, date_posted
             )
 
-        @staticmethod
-        @app.route("/about")
-        def about():
-            """Displays about page
+            return redirect(url_for("candidates"))
 
-            Returns:
-                render_template: about
-            """
-            return render_template(template_name_or_list="about.html")
+        return render_template("add_vacancy.html")
 
-        @staticmethod
-        @app.route("/faqs")
-        def faqs():
-            """Display FAQs
+    @app.route("/candidates")
+    def candidates():
+        candidates = DatabaseTools.query("SELECT * FROM vacancies")
+        total_count = len(candidates)
+        return render_template(
+            "candidates.html", candidates=candidates, total_count=total_count
+        )
 
-            Returns:
-                render_template: faqs
-            """
-            return render_template(template_name_or_list="faqs.html")
 
-    class Logic:
-        """Full logic of application will be executed here"""
+class DatabaseTools:
+    @staticmethod
+    def get_db_path():
+        db_folder = os.path.join(os.path.dirname(__file__), "db")
+        os.makedirs(db_folder, exist_ok=True)
+        return os.path.join(db_folder, "database.db")
 
-        @staticmethod
-        @app.route("/services")
-        def services():
-            """that function display information about services on the page
+    @staticmethod
+    def drop_table():
+        db_path = DatabaseTools.get_db_path()
+        with sqlite3.connect(db_path) as connection:
+            cursor = connection.cursor()
+            cursor.execute("DROP TABLE IF EXISTS vacancies")
 
-            Returns:
-                rendered HTML page: with sql query and current date.
-            """
-            query_str = "SELECT id, title, price_low, price_high, description, image FROM services"
-            services = Database.query(query_str)
-            date = datetime.datetime.now().strftime("%d %b")
-            return render_template(
-                template_name_or_list="services.html", services=services, date=date
+    @staticmethod
+    def create_db():
+        db_path = DatabaseTools.get_db_path()
+        with sqlite3.connect(db_path) as connection:
+            cursor = connection.cursor()
+            cursor.execute(
+                """
+                CREATE TABLE IF NOT EXISTS vacancies (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL,
+                    title TEXT,
+                    location TEXT,
+                    iin INTEGER NOT NULL UNIQUE,
+                    email TEXT NOT NULL,
+                    description TEXT NOT NULL,
+                    salary REAL,
+                    date_posted DATE
+                );
+                """
             )
 
-        @staticmethod
-        @app.route("/service/<int:service_id>")
-        def service_details(service_id: int):
-            """that function display information about exactly one service details on the page
+    @staticmethod
+    def convert_iin(iin: str):
+        if isinstance(iin, int):
+            return iin
+        if isinstance(iin, str):
+            try:
+                iin = int(iin)
+            except Exception as e:
+                iin = 0
+                print(str(e))
+            return iin
 
-            Args:
-                service_id (int): will search for specific service_id
-                in database and display information about it:
-                title,
-                price_low,
-                price_high,
-                description,
-                image.
+    @staticmethod
+    def insert_vacancy(
+        name: str,
+        title: str,
+        location: str,
+        iin: int | str,
+        email: str,
+        description: str,
+        salary: int | float,
+        date_posted: str,
+    ):
+        iin = DatabaseTools.convert_iin(iin)
+        db_path = DatabaseTools.get_db_path()
+        with sqlite3.connect(db_path) as connection:
+            cursor = connection.cursor()
 
-            Returns:
-                rendered HTML page: with information about service_id
-            """
-            query_str = """SELECT id, title, price_low, price_high, description, image
-            FROM services WHERE id = ?"""
-            service = Database.query(query_str, (service_id,), many=False)
+            cursor.execute("SELECT id FROM vacancies WHERE iin = ?", (iin,))
+            existing_row = cursor.fetchone()
 
-            if service:
-                return render_template("service_details.html", service=service)
+            if existing_row:
+                print("Vacancy with the same iin already exists.")
             else:
-                return "Service not found.", 404
+                query_str = """
+                    INSERT INTO vacancies (name, title, location, iin, email, description, salary, date_posted)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """
+                vacancy_data = (
+                    name,
+                    title,
+                    location,
+                    iin,
+                    email,
+                    description,
+                    salary,
+                    date_posted,
+                )
+                cursor.execute(query_str, vacancy_data)
 
-
-class Database:
-    """Database class for connecting to the database"""
+    @staticmethod
+    def update_vacancy_by_id(
+        vacancy_id: int,
+        name: str,
+        title: str,
+        location: str,
+        iin: int,
+        email: str,
+        description: str,
+        salary: int | float,
+        date_posted: str,
+    ):
+        db_path = DatabaseTools.get_db_path()
+        with sqlite3.connect(db_path) as connection:
+            cursor = connection.cursor()
+            query_str = """
+                UPDATE vacancies
+                SET  title = ?, name = ?, location = ?, iin = ?, email = ?, description = ?, salary = ?, date_posted = ?
+                WHERE id = ?
+            """
+            vacancy_data = (
+                name,
+                title,
+                location,
+                iin,
+                email,
+                description,
+                salary,
+                date_posted,
+                vacancy_id,
+            )
+            cursor.execute(query_str, vacancy_data)
 
     @staticmethod
     def query(query_str: str, args=(), many=True) -> list | None:
-        """Connect to the database
-
-        Args:
-            query_str (str): Sql query string
-            args (tuple, optional): using for escape from sql injections. Defaults to ().
-            many (bool, optional): if you want to return all from db use many=True,
-            otherwise set False for one row. Defaults to True.
-
-        Returns:
-            list | None
-        """
-        local_path = os.path.join(os.path.dirname(__file__), "db")
-        os.makedirs(local_path, exist_ok=True)
-        with sqlite3.connect(f"{local_path}/database.db") as connection:
+        db_path = DatabaseTools.get_db_path()
+        with sqlite3.connect(db_path) as connection:
             cursor = connection.cursor()
             cursor.execute(query_str, args)
             try:
@@ -123,96 +214,50 @@ class Database:
                     return cursor.fetchall()
                 return cursor.fetchone()
             except sqlite3.Error as error:
-                print(f"Error with sqlite3 connection {error}")
+                print(f"Error with sqlite3 connection {str(error)}")
                 return None
             except Exception as error:
-                print(f"Oop something went wrong {error}")
+                print(f"Oop something went wrong {str(error)}")
                 return None
 
 
-class DatabaseTools:
-    """that class needs to be used when you want to work with database"""
-
-    @staticmethod
-    def create_db():
-        """create a new database
-        with id,
-        title,
-        price_low,
-        price_high,
-        description,
-        image"""
-        Database.query(
-            """
-            CREATE TABLE IF NOT EXISTS services (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                title TEXT NOT NULL,
-                price_low REAL NOT NULL,
-                price_high REAL NOT NULL,
-                description TEXT NOT NULL,
-                image TEXT
-            )
-            """
-        )
-
-    @staticmethod
-    def drop_db():
-        """drop the database"""
-        Database.query("DROP TABLE IF EXISTS services")
-
-    @staticmethod
-    def insert_service(
-        title: str,
-        price_low: int | float,
-        price_high: int | float,
-        description: str,
-        image=None,
-    ):
-        """insert service into database
-
-        Args:
-            title (str): title of service
-            price_low (int | float): lower price of the service
-            price_high (int | float): higher price of the service
-            description (str): description for that service
-            image (_type_, optional): url or path to image. Defaults to None.
-        """
-        query_str = """
-        INSERT INTO services (title, price_low, price_high, description, image)
-        VALUES (?, ?, ?, ?, ?)
-        """
-
-        service_data = (title, price_low, price_high, description, image)
-
-        Database.query(query_str, service_data)
-
-    @staticmethod
-    def update_service_by_id(
-        service_id: int,
-        title: str,
-        price_low: int | float,
-        price_high: int | float,
-        description: str,
-        image=None,
-    ):
-        """This function is used to update a service by its id in the database
-
-        Args:
-            service_id (int): item id of the service which will be updated
-            title (str): new title of the service
-            price_low (int | float): lower price of the service
-            price_high (int | float): higher price of the service
-            description (str): description for that exactly service
-            image (_type_, optional): url to image Defaults to None.
-        """
-        query_str = """
-        UPDATE services
-        SET title = ?, price_low = ?, price_high = ?, description = ?, image = ?
-        WHERE id = ?
-        """
-        service_data = (title, price_low, price_high, description, image, service_id)
-
-        Database.query(query_str, service_data)
+def uncomment_query():
+    """
+    Эта функция дропает всю бд и вставляет тестовые данные, можно вытаскивать нужные функции для удобства проверки.
+    Если произошла ошибка по вставлению в бд, то всю логику вытащить за функцию.
+    """
+    DatabaseTools.drop_table()
+    DatabaseTools.create_db()
+    DatabaseTools.insert_vacancy(
+        name="Leonid",
+        title="Front-end Developer",
+        location="New York",
+        iin="012345678912",  # str value for checking function to convert to int
+        email="Leonid@Mail.com",
+        description="Skilled Front-end Developer.",
+        salary=80000.0,
+        date_posted=datetime.datetime.now().strftime("%Y-%m-%d"),
+    )
+    DatabaseTools.insert_vacancy(
+        name="Kirill",
+        title="Data Scientist",
+        location="San Francisco",
+        iin=550033771199,  # int value
+        email="kirill@gmail.com",
+        description="Data Science loves to work on exciting projects.",
+        salary=95000.0,
+        date_posted=datetime.datetime.now().strftime("%Y-%m-%d"),
+    )
+    DatabaseTools.insert_vacancy(
+        name="Alexander",
+        title="Accountant",
+        location="Detroit",
+        iin="978060102033",
+        email="alexander@gmail.com",
+        description="Detail-oriented Accountant.",
+        salary=56000.0,
+        date_posted=datetime.datetime.now().strftime("%Y-%m-%d"),
+    )
 
 
 if __name__ == "__main__":

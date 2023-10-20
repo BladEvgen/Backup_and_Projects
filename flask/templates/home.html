@@ -1,68 +1,134 @@
-{% extends "components/base.html" %} 
-{% block main %}
-<div class="container w-25">
-  <div
-    id="carouselExampleCaptions"
-    class="carousel slide fs-4 fw-bold"
-    data-bs-ride="carousel"
-    fs="4"
-    data-bs-interval="2000" 
-  >
-    <div class="carousel-indicators">
-      {% for item in carousel_items %}
-      <button
-        type="button"
-        data-bs-target="#carouselExampleCaptions"
-        data-bs-slide-to="{{ loop.index0 }}"
-        {%
-        if
-        loop.first
-        %}class="active"
-        aria-current="true"
-        {%
-        endif
-        %}
-        aria-label="Slide {{ loop.index }}"
-      ></button>
-      {% endfor %}
+{% extends "components/base.html" %} {% block main %}
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="display-4">Присоединяйтесь к нам и улучшите свою карьеру</h2>
+      <p class="lead">
+        Мы предоставляем уникальные возможности для вашей карьеры и помогаем вам
+        быстро находить лучшие рабочие места.
+      </p>
     </div>
-    <div class="carousel-inner">
-      {% for item in carousel_items %}
-      <div class="carousel-item {% if loop.first %}active{% endif %}">
-        <img
-          src="{{ url_for('static', filename='img/' + item[2]) }}"
-          class="d-block w-100"
-          alt="{{ item[0] }}"
-          width="50%"
-          height="50%"
-        />
-        <div class="carousel-caption d-none d-md-block">
-          <h5>{{ item['0'] }}</h5>
-          <p class="text-white">
-            {{ item[1][:50] }}{% if item[1]|length > 50 %}...{% endif %}
-          </p>
-        </div>
-      </div>
-      {% endfor %}
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="display-5">Как это работает?</h2>
+      <p class="text-justify">
+      Процесс поиска работы у нас прост и эффективен. Вам нужно только заполнить форму с вашими данными, указать ваши профессиональные навыки и предпочтения.
+      Наша система, используя передовые технологии и алгоритмы, автоматически анализирует информацию и находит подходящие вакансии, которые наилучшим образом соответствуют вашему профилю.
+      Как только подходящие вакансии найдены, вы получите уведомления, и сможете немедленно откликнуться на них. 
+      Это позволяет вам быть всегда в курсе актуальных предложений и быстро реагировать на интересные вакансии. 
+      Весь этот процесс происходит быстро и без лишних хлопот, чтобы вы могли сосредоточиться на поиске работы и развитии вашей карьеры.
+      </p>
     </div>
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#carouselExampleCaptions"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#carouselExampleCaptions"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    <div class="col-md-6">
+      <h2 class="display-5">Наши преимущества</h2>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <i class="bi bi-check-circle text-success me-2"></i>Быстрый и удобный
+          поиск вакансий
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-check-circle text-success me-2"></i
+          >Персонализированные рекомендации
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-check-circle text-success me-2"></i>Актуальная
+          информация о рынке труда
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-check-circle text-success me-2"></i>Прозрачные условия
+          труда
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-check-circle text-success me-2"></i>Поддержка
+          специалистов в карьерном росте
+        </li>
+        <li class="list-group-item">
+          <i class="bi bi-check-circle text-success me-2"></i>Гарантированные
+          результаты
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
-{% endblock main%}
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2 class="display-4">Выберите подходящий план</h2>
+      <p class="lead">
+        Мы предлагаем разные планы подписки для удовлетворения ваших потребностей.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title text-center">Бесплатный</h5>
+          <h6 class="card-subtitle mb-2 text-muted text-center">Подходит для начинающих</h6>
+          <p class="card-text left-aligned-text"> 
+            <ul>
+              <li>Ограниченный доступ к вакансиям</li>
+              <li>Еженедельные обновления</li>
+              <li>Базовая поддержка</li>
+            </ul>
+          </p>
+            <div class="text-center">
+          <a href="/signup" class="btn btn-primary text-center">Выбрать</a>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title text-center">Стандарт</h5>
+          <h6 class="card-subtitle mb-2 text-muted text-center">Для опытных специалистов</h6>
+          <p class="card-text left-aligned-text">
+            <ul>
+              <li>Полный доступ к вакансиям и рекомендациям</li>
+              <li>Ежедневные обновления</li>
+              <li>Поддержка по email</li>
+            </ul>
+          </p>
+            <div class="text-center">
+          <a href="/signup" class="btn btn-primary text-center">Выбрать</a>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body ">
+          <h5 class="card-title text-center">Премиум</h5>
+          <h6 class="card-subtitle mb-2 text-muted text-center">Для профессионалов</h6>
+          <p class="card-text left-aligned-text"> 
+            <ul>
+              <li>Полный доступ + персональный консультант</li>
+              <li>Приоритетная поддержка</li>
+              <li>Ежедневные обновления и рекомендации</li>
+            </ul>
+          </p>
+            <div class="text-center">
+          <a href="/signup" class="btn btn-primary text-center">Выбрать</a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta">
+  <div class="container text-center">
+    <h2 class="display-4">Готовы начать?</h2>
+    <p class="lead">
+      Присоединяйтесь к нашей платформе и упростите поиск рабочего места!
+      Начните сегодня и обретите новые возможности для карьерного роста.
+    </p>
+    <a href="/signup" class="btn btn-warning btn-lg">Зарегистрироваться</a>
+  </div>
+</div>
+
+{% endblock main %}

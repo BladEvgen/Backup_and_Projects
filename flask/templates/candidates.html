@@ -1,0 +1,34 @@
+{% extends "components/base.html" %} {% block main %}
+<div class="container">
+  <h1 class="my-4">Candidates</h1>
+  <p class="mt-4">Total Count by ID: {{ total_count }}</p>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Skills</th>
+          <th>Date Of Posted</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for candidate in candidates %}
+        <tr>
+          <td>{{ candidate[0] }}</td>
+          <td>{{ candidate[1] }}</td>
+          <td>{{ candidate[5] }}</td>
+          <td>{{ candidate[3] }}</td>
+          <td>{{ candidate[2] }}</td>
+          <td>{{ candidate[-1] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <a href="/add_vacancy" class="btn btn-primary">Add Vacancy</a>
+</div>
+{% endblock main %}
