@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MainWindow</class>
+  <widget class="QMainWindow" name="MainWindow">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>500</width>  
+        <height>200</height>
+      </rect>
+    </property>
+    <widget class="QWidget" name="centralwidget">
+      <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+          <widget class="QLabel" name="label_product_name">
+            <property name="text">
+              <string>Наименование продукта:</string>
+            </property>
+          </widget>
+        </item>
+        <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit_product_name">
+            <property name="placeholderText">
+              <string>Введите наименование продукта</string>
+            </property>
+          </widget>
+        </item>
+        <item row="1" column="0">
+          <widget class="QLabel" name="label_product_price">
+            <property name="text">
+              <string>Цена продукта (руб.):</string>
+            </property>
+          </widget>
+        </item>
+        <item row="1" column="1">
+          <widget class="QDoubleSpinBox" name="doubleSpinBox_product_price">
+            <property name="maximum">
+              <double>1000000000.0</double>
+            </property>
+          </widget>
+        </item>
+        <item row="2" column="0">
+          <widget class="QLabel" name="label_quantity">
+            <property name="text">
+              <string>Количество:</string>
+            </property>
+          </widget>
+        </item>
+        <item row="2" column="1">
+          <widget class="QLineEdit" name="lineEdit_quantity">
+            <property name="placeholderText">
+              <string>Введите количество</string>
+            </property>
+          </widget>
+        </item>
+        <item row="3" column="0">
+          <widget class="QLabel" name="label_date">
+            <property name="text">
+              <string>Дата:</string>
+            </property>
+          </widget>
+        </item>
+        <item row="3" column="1">
+          <widget class="QDateEdit" name="dateEdit_date"> 
+          </widget>
+
+        </item>
+        
+        <item row="4" column="0" colspan="2">
+          <widget class="QPushButton" name="pushButton_save_product">
+            <property name="text">
+              <string>Сохранить продукт</string>
+            </property>
+          </widget>
+        </item>
+        <item row="5" column="0" colspan="2">
+          <widget class="QPushButton" name="pushButton_export_production">
+            <property name="text">
+              <string>Экспорт данных о производстве</string>
+            </property>
+          </widget>
+        </item>
+      </layout>
+    </widget>
+    <widget class="QStatusBar" name="statusbar"/>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>
