@@ -7,7 +7,6 @@ from kivy.uix.scrollview import ScrollView
 from kivy.uix.popup import Popup
 from datetime import datetime, timedelta
 from openpyxl import load_workbook
-from kivy.core.window import Window
 import os
 
 kivy.require("1.9.0")  # Minimum Kivy version
@@ -19,7 +18,7 @@ class ScheduleApp(App):
         layout = BoxLayout(orientation="vertical", spacing=10, padding=10)
 
         # Get the current date and date range
-        end_date = datetime.now() + timedelta(days=0)
+        end_date = datetime.now() + timedelta(days=2)
 
         # Header label with the date range
         date_range_label = Label(
