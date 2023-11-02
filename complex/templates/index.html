@@ -1,0 +1,42 @@
+{% extends 'components/base.html' %}
+
+{% block main %}
+<div class="container">
+  <h1 class="display-4 mt-4 mb-4">Task List</h1>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <form action="/add_task" method="post">
+        <div class="form-group">
+          <input type="text" name="task" class="form-control" placeholder="Add a task" />
+        </div>
+        <div class="form-group">
+          <textarea name="description" class="form-control" rows="3" placeholder="Add a description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Task</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="task-list mt-4">
+    <ul class="list-group">
+      {% for task, description in tasks %}
+        <li class="list-group-item mb-2">
+          <h5 class="mb-1">{{ task }}</h5>
+          {% if description %}
+            <p class="mb-1">{{ description }}</p>
+          {% else %}
+            <p class="text-muted">No available description</p>
+          {% endif %}
+          <form action="/delete_task" method="post" class="d-inline">
+            <input type="hidden" name="task" value="{{ task }}">
+            <button type="submit" class="btn btn-danger btn-sm float-right">Delete</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+
+{% endblock %}
