@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Profile</h1>
+    <div>
+        <p><strong>Username:</strong> {{ user['username'] }}</p>
+        <p><strong>Date of Registration:</strong> {{ user['date_of_creation'] }}</p>
+        <a href="{{ url_for('change_password', username=user['username']) }}" class="btn btn-primary">Change Password</a>
+    </div>
+{% endblock %}

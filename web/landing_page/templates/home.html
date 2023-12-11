@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="mb-4">Welcome to My Store</h1>
+
+                <div class="card mb-4">
+                    <img src="https://via.placeholder.com/800x400" class="card-img-top" alt="Blog Post Image">
+                    <div class="card-body">
+                        <h2 class="card-title">Discover Our Latest Products</h2>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                        <a href="{{ url_for('product_list') }}" class="btn btn-primary">Explore Products</a>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <img src="https://via.placeholder.com/800x400" class="card-img-top" alt="Blog Post Image">
+                    <div class="card-body">
+                        <h2 class="card-title">Behind the Scenes: Our Passion for Quality</h2>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <h3 class="mb-4">Featured Products</h3>
+
+                <div class="card-deck">
+                    {% for product in featured_products %}
+                        <div class="card mb-4">
+                            <img src="https://via.placeholder.com/200x150"  class="card-img-top" alt="{{ product[1] }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product[1] }}</h5>
+                                <p class="card-text">${{ product[2] }}</p>
+                                <a href="{{ url_for('product_details', product_id=product[0]) }}" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
