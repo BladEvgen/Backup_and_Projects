@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTC/USDT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Данные о курсе BTC/USDT</h1>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Временная метка</th>
+                    <th>Открытие</th>
+                    <th>Максимум</th>
+                    <th>Минимум</th>
+                    <th>Закрытие</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in exchange_data %}
+                <tr>
+                    <td>{{ entry.timestamp }}</td>
+                    <td>{{ entry.open }}</td>
+                    <td>{{ entry.high }}</td>
+                    <td>{{ entry.low }}</td>
+                    <td>{{ entry.close }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+</body>
+</html>

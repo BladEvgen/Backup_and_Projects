@@ -1,0 +1,32 @@
+ body {
+     font-family: 'Roboto', sans-serif;
+     background-color: #f8f9fa;
+     color: #343a40;
+ }
+
+ h1 {
+     color: #007BFF;
+     margin-top: 20px;
+ }
+
+ .info {
+     margin-bottom: 20px;
+ }
+
+ table {
+     margin-top: 20px;
+ }
+
+ th,
+ td {
+     text-align: center;
+ }
+
+ thead {
+     background-color: #007BFF;
+     color: #fff;
+ }
+
+ tbody tr:hover {
+     background-color: #cce5ff;
+ }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,700&display=swap" rel="stylesheet">
+    <title>Погода</title>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">Погода в городе {{ city }}</h1>
+            <div class="search-container">
+                <form action="" method="get" class="search-container">
+                    <input type="text" name="city" placeholder="Введите город">
+                    <input type="submit" value="Поиск">
+                </form>
+                <form action="/" method="post">
+                    <button id="clear_session" type="submit" name="clear" value="1" class="clear-button">Clear session</button>
+                </form>
+            <div>
+        </header>
+        <main>
+            {% if city %}
+                {% if is_working_day %}
+                {% else %}
+                {% endif %}
+                {% if weather_data %}
+                <div class="weather-data">
+                    {% if 'дождь' in weather_data['desc'].lower() %}
+                    <img class="weather-icon" src="{{ url_for('static', filename='svg/rainy-7.svg') }}" alt="Иконка дождя">
+                    {% elif 'пасмурно' in weather_data['desc'].lower() %}
+                    <img class="weather-icon" src="{{ url_for('static', filename='svg/cloudy.svg') }}" alt="Иконка облачности">
+                    {% elif 'облачно с прояснениями' in weather_data['desc'].lower() %}
+                    <img class="weather-icon" src="{{ url_for('static', filename='svg/cloudy.svg') }}" alt="Иконка облачности_1">
+                    {% elif 'снег' in weather_data['desc'].lower() %}
+                    <img class="weather-icon" src="{{ url_for('static', filename='svg/snowy-6.svg') }}" alt="Иконка снега">
+                    {% elif 'гроза' in weather_data['desc'].lower() %}
+                    <img class="weather-icon" src="{{ url_for('static', filename='svg/thunder.svg') }}" alt="Иконка грозы">
+                    {% elif 'ясно' in weather_data['desc'].lower() %}
+                    <img class="weather-icon" src="{{ url_for('static', filename='svg/day.svg') }}" alt="Иконка ясной погоды">
+                    {% else %}
+                    {% endif %}
+                    <div class="weather-info">
+                        <div class="weather-desc">{{ weather_data['desc'] }}</div>
+                        <div class="temp">{{ weather_data['temp'] }}&deg;C</div>
+                        <div class="info">Ощущается как: {{ weather_data['feels_like'] }}&deg;C</div>
+                        <div class="info">Минимальная температура: {{ weather_data['temp_min'] }}&deg;C</div>
+                        <div class="info">Максимальная температура: {{ weather_data['temp_max'] }}°C</div>
+                        <div class="info">Давление: {{ weather_data['pressure'] }} гПа</div>
+                        <div class="info">Влажность: {{ weather_data['humidity'] }}%</div>
+                    </div>
+                </div>
+                {% else %}
+                <p>Не удалось получить данные о погоде.</p>
+                {% endif %}
+            {% endif %}
+        </main>
+    </div>
+</body>
+
+</html>
