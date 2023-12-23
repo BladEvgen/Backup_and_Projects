@@ -1,0 +1,81 @@
+{% extends "components/base.html" %}
+{% load static %}
+{% block title %}Product Detail{% endblock title %}
+{% block main %}
+<style>   
+.styled-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+.styled-link:hover {
+    text-decoration: underline;
+}
+.review-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.review-content {
+    flex: 1;
+}
+.review-buttons {
+    margin-left: 10px; 
+}
+</style>
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Product Detail</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text text-muted">₽ {{ product.price }}</p>
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+        <div class="mt-4">
+            <h4>Написать отзыв</h4>
+            <form method="post" action="{% url 'add_review' product.id %}">
+                {% csrf_token %}
+                <textarea name="content" class="form-control mb-2" placeholder="оставьте ваш отзыв здесь" required></textarea>
+                <button type="submit" class="btn btn-primary">Подтвердить</button>
+            </form>
+        </div>
+    {% else %}
+        <p class="mt-4"> <a href="/login" class="styled-link">Войдите</a> чтобы оставить отзыв</p>
+    {% endif %}
+    <div class="mt-4">
+        <h4>Отзывы</h4>
+        {% for review in reviews %}
+            <div class="review-container">
+                <div class="media mb-3 review-content">
+                    <img src="{% static 'png/user.png' %}" class="mr-3 rounded-circle" alt="User Avatar" width="50">
+                    <div class="media-body">
+                        <h5 class="mt-0">{{ review.user.username }}</h5>
+                        <p>{{ review.content }}</p>
+                        <p class="text-muted">{{ review.created_at|date:"H:i d.m.Y" }}</p>
+                    </div>
+                </div>
+                {% if user.is_authenticated and user.is_staff %}
+                    <div class="review-buttons">
+                        <form method="post" action="{% url 'product_detail' product.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="review_id" value="{{ review.id }}">
+                            {% if review.is_visible %}
+                                <input type="hidden" name="action" value="hide">
+                                <a href="#" class="styled-link" onclick="this.closest('form').submit(); return false;">Скрыть</a>
+                            {% else %}
+                                <input type="hidden" name="action" value="unhide">
+                                <a href="#" class="styled-link" onclick="this.closest('form').submit(); return false;">Показать</a>
+                            {% endif %}
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock main %}

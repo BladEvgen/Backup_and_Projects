@@ -1,0 +1,17 @@
+{% extends "components/base.html" %}
+
+{% block title %}Product Detail{% endblock title %}
+
+{% block main %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Product Detail</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ product_details.1 }}</h5>
+            <p class="card-text">{{ product_details.2 }}</p>
+            <p class="card-text text-muted">₽ {{ product_details.3 }}</p>
+        </div>
+    </div>
+</div>
+{% endblock main %}
