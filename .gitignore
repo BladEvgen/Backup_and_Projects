@@ -159,4 +159,11 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 .DS_Store
+<<<<<<< HEAD
 .web/DHL_copy/click.txt
+=======
+.DS_Store
+.DS_Store
+>>>>>>> be7aba8577ec6872b7e567d2c10cb1234b4292ec
+.DS_Store
+.DS_Store
