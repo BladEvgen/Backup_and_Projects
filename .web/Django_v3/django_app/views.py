@@ -4,6 +4,7 @@ views - контроллеры(вью) - т.е. бизнес логика
 
 import datetime
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
 from django_app import utils
 from django_app.utils import decorator_error_handler
 from django_app.models import Product, Review
@@ -41,13 +42,7 @@ def profile(request, username):
 
 @decorator_error_handler
 def product_list(request):
-    data = {
-        "database_id": 2,
-        "query": "SELECT id, name, DESCRIPTION, price FROM product",
-        "many": True,
-    }
-
-    products = utils.api_request(data=data, res_type=list)
+    products = Product.objects.values("id", "name", "description", "price")
     return render(request, "product_list.html", {"products": products})
 
 
@@ -106,6 +101,7 @@ def add_review(request, product_id):
     return redirect("product_detail", product_id=product_id)
 
 
+@decorator_error_handler
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -132,40 +128,30 @@ def register(request):
         if password != confirm_password:
             return render(request, "register.html", {"error": "Passwords do not match"})
 
-        data = {
-            "database_id": 1,
-            "query": "SELECT username FROM auth_user WHERE username=?",
-            "args": (username,),
-            "many": False,
-        }
-        existing_user = utils.api_request(data=data, res_type=list)
-
+        existing_user = User.objects.filter(username=username).exists()
         if existing_user:
             return render(
                 request, "register.html", {"error": "Username already exists"}
             )
-        create_user = {
-            "database_id": 1,
-            "query": "INSERT INTO auth_user (username, email, password, is_superuser, is_staff, is_active, date_joined, first_name, last_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            "args": (
-                username,
-                email,
-                make_password(password),
-                "0",
-                "0",
-                "1",
-                datetime.datetime.now().isoformat(),
-                firstname,
-                lastname,
-            ),
-            "commit": True,
-        }
 
-        utils.api_request(data=create_user, res_type=None)
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password,
+            first_name=firstname,
+            last_name=lastname,
+        )
+
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             return redirect("profile", username=username)
+        else:
+            return render(
+                request,
+                "register.html",
+                {"error": "Failed to log in. Please try again."},
+            )
 
     return render(request, "register.html", context={})
 

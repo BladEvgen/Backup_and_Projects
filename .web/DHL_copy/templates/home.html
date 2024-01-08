@@ -1,0 +1,73 @@
+{% extends "components/base.html" %} 
+{% load static %}
+{% block title %} Home {% endblock title %}
+
+{% block main %}
+<div class= "container">
+<div class="row">
+      <div class="col-lg-4">
+        <img src="{% static 'png/price.png' %}" class="mr-3 rounded-circle" alt="Price images" width="140" >
+
+        <h2>Price List</h2>
+        <p class="text-wrap" style="width: 25rem;">Ознакомьтесь с нашим прайс-листом и убедитесь, что мы предлагаем самые выгодные цены на доставку по различным регионам.</p>
+
+        <p><a class="btn btn-secondary" href="{% url 'price_list' %}">View details »</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+         <img src="{% static 'png/about.png' %}" class="mr-3 rounded-circle" alt="Price images" width="140" >
+        <h2>About Us</h2>
+        <p class="text-wrap" style="width: 25rem;">Добро пожаловать на страницу "О нас". Здесь вы найдете подробную информацию о нашей компании, ее целях и принципах работы.</p>
+
+        <p><a class="btn btn-secondary" href="{% url 'about' %}">View details »</a></p>
+      </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+        <img src="{% static 'png/login.png' %}" class="mr-3 rounded-circle" alt="User Avatar" width="140" >
+        {% if request.user.is_authenticated %}
+            <h2>Profile</h2>
+            <p class="text-wrap" style="width: 25rem;">Личный кабинет предоставляет удобный доступ ко многим полезным функциям. Отслеживайте историю ваших заказов и многое другое.</p>
+
+            <p><a class="btn btn-secondary" href="{% url 'profile' username=request.user.username %}">View details »</a></p>
+        {% else %}
+            <h2>Login</h2>
+            <p class="text-wrap" style="width: 25rem;">Просматривайте и редактируйте вашу информацию. Мы ценим ваше участие и ваш профиль &ndash; это место, где вы можете управлять своими данными.</p>
+            <p><a class="btn btn-secondary" href="{% url 'login' %}">View details »</a></p>
+        {% endif %}
+    </div><!-- /.col-lg-4 -->
+
+    </div>
+
+
+    <hr class="featurette-divider">
+<div class="row featurette" style="background-image: url('{% static 'png/green-logistics.jpg' %}'); background-size: cover; position: relative; border-radius: 5px;">
+    <div class="col-md-7" style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 5px;">
+        <h2 class="featurette-heading">Экологичная <span class="text-muted">логистика</span></h2>
+        <p class="lead">Экологичный бизнес начинается с экологичных цепочек поставок. Как пионер зеленой логистики мы можем похвалиться уникальным портфолио решений в данной сфере. Вместе с нашими клиентами во всем мире в мы сводим выбросы к минимуму, не нарушая привычной деятельности. Ознакомьтесь с нашими предложениями, причинами нашего стремления к экологичности и вкладом нашей отрасли в экологичное будущее.</p>
+    </div>
+    <div class="col-md-5">
+    </div>
+</div>
+    <hr class="featurette-divider">
+<div class="row featurette" style="background-image: url('{% static 'png/glo.jpg' %}'); background-size: cover; position: relative; border-radius: 5px;">
+    <div class="col-md-7 order-md-2" style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 5px;">
+        <h2 class="featurette-heading">Наши <span class="text-muted">подразделения</span></h2>
+        <p class="lead">DHL объединяет людей более чем в 220 странах и регионах во всему миру. Обладая штатом в более чем 600 000 сотрудников, мы предоставляем интегрированные услуги и индивидуальные решения для управления и транспортировки писем, товаров и данных.</p>
+    </div>
+    <div class="col-md-5 order-md-1">
+    </div>
+</div>
+
+    <hr class="featurette-divider">
+<div class="row featurette" style="background-image: url('{% static 'png/glo-insights.jpg' %}'); background-size: cover; position: relative; border-radius: 5px;">
+    <div class="col-md-7" style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 5px;">
+        <h2 class="featurette-heading">Идеи и<span class="text-muted"> инновации</span></h2>
+        <p class="lead">Поддерживая сотрудничество, компания способствует взаимодействию между клиентами, исследовательскими и научными учреждениями, партнерами по отрасли и логистическими экспертами в рамках бизнес-подразделений DHL. Являясь идейным лидером в области логистики, DHL систематически инвестирует в исследования трендов и разработку решений.</p>
+    </div>
+    <div class="col-md-5">
+    </div>
+</div>
+    <hr class="featurette-divider">
+</div>
+
+
+    
+{% endblock main %}

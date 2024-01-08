@@ -15,10 +15,10 @@
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ product.1 }}</h5>
-                        <p class="card-text">{{ product.2|truncatechars:30 }}</p>
-                        <a href="{% url 'product_detail' product.0 %}" class="btn btn-primary">Открыть</a>
-                        <p class="card-text text-muted">₽ {{ product.3 }}</p>
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description|truncatechars:30 }}</p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Открыть</a>
+                        <p class="card-text text-muted">₽ {{ product.price }}</p>
                     </div>
                 </div>
             </div>

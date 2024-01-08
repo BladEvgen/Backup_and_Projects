@@ -1,0 +1,33 @@
+{% extends "components/base.html" %} 
+{% block title %}Price List{% endblock title %}
+{% block main %}
+<div class="container mt-4">
+  <h1 class="mb-4 text-center">Цены доставок</h1>
+{% include "components/paginator.html" %}
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Название доставки</th>
+          <th class="text-center">Описание</th>
+          <th class="text-center">Цена (тенге)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for price in page_obj %}
+        <tr>
+          <td class="text-center">{{ price.0 }}</td>
+          <td>{{ price.1 }}</td>
+          <td>{{ price.2 }}</td>
+          <td>{{ price.3|floatformat:2 }} тг.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% include "components/paginator.html" %}
+
+{% endblock main %}

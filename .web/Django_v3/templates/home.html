@@ -32,11 +32,15 @@
                 </div>
             </div>
   <div class="col-md-4">
-            <h4 class="text-center">КУРСЫ НАЦИОНАЛЬНОГО БАНКА <br> на {{ date.today|date:"d.m.Y" }}</h4>
+            <h4 class="text-center">КУРСЫ НАЦИОНАЛЬНОГО БАНКА <br> на <span class = "fw-bold">{{ date.today|date:"d.m.Y" }}</span></h4>
             <ul class="list-group ">
                 {% for currency, value in result_data %}
                     <li class="list-group-item text-center ">
+                        {% if currency == "GOLD" %}
+                        <strong class=" text-warning">{{ currency }}</strong>: 
+                        {%else%}
                         <strong class=" text-primary">{{ currency }}</strong>: 
+                        {%endif%}
                         <span>{{ value|slice:"4:" }}</span>
                     </li>
                 {% endfor %}
