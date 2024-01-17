@@ -1,0 +1,15 @@
+{% extends "components/base.html" %}
+
+{% block title %}success{% endblock title %}
+
+{% block main %}
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 text-center">
+        <h2 class="text-success">Данные были загруженны!</h2>
+        <p class="lead">Ваши данные были успешно помещенны в Базу Данных.</p>
+        <a href="{% url 'price_list_xlsx' %}" class="btn btn-primary mt-3">Просмотреть цены</a>
+      </div>
+    </div>
+  </div>
+{% endblock main %}

@@ -20,10 +20,14 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="{% url 'home' %}" class="nav-link px-2 text-dark">Home</a></li>
                 <li><a href="{% url 'price_list' %}" class="nav-link px-2 text-dark">Prices</a></li>
-                <li><a href="{% url 'price_list_sql' %}" class="nav-link px-2 text-dark">Prices SQL</a></li>
 
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'profile' username=request.user.username %}" class="nav-link px-2 text-dark">Profile</a></li>
+                  {% if request.user.is_staff %}
+                    <li><a href="{% url 'price_list_sql' %}" class="nav-link px-2 text-dark">Prices SQL</a></li>
+                    <li><a href="{% url 'price_list_xlsx' %}" class="nav-link px-2 text-dark">Prices XLSX</a></li>
+                    <li><a href="{% url 'load_data' %}" class="nav-link px-2 text-dark">Load Data</a></li>
+                  {% endif %}
+                  <li><a href="{% url 'profile' username=request.user.username %}" class="nav-link px-2 text-dark">Profile</a></li>
                 {% endif %}
             </ul>
             <div class="text-end">

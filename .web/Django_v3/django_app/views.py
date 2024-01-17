@@ -9,9 +9,9 @@ from django_app import utils
 from django_app.utils import decorator_error_handler
 from django_app.models import Product, Review
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.hashers import make_password
 from django.core.cache import cache
 from django.http import Http404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 @decorator_error_handler
@@ -57,7 +57,20 @@ def product_detail(request, product_id):
     except Product.DoesNotExist:
         return render(request, "error.html", {"error": "Product not found"}, status=404)
 
-    reviews = Review.objects.filter(product=product)
+    reviews = Review.objects.filter(product=product).order_by("-created_at")
+
+    if not request.user.is_staff:
+        reviews = reviews.filter(is_visible=True)
+
+    paginator = Paginator(reviews, 3)
+
+    page = request.GET.get("page")
+    try:
+        paginated_reviews = paginator.page(page)
+    except PageNotAnInteger:
+        paginated_reviews = paginator.page(1)
+    except EmptyPage:
+        paginated_reviews = paginator.page(paginator.num_pages)
 
     if (
         request.method == "POST"
@@ -80,11 +93,10 @@ def product_detail(request, product_id):
         review.save()
         return redirect("product_detail", product_id=product_id)
 
-    if not request.user.is_staff:
-        reviews = reviews.filter(is_visible=True)
-
     return render(
-        request, "product_detail.html", {"product": product, "reviews": reviews}
+        request,
+        "product_detail.html",
+        {"product": product, "reviews": paginated_reviews},
     )
 
 
@@ -118,9 +130,9 @@ def login_view(request):
 @decorator_error_handler
 def register(request):
     if request.method == "POST":
-        firstname = request.POST.get("firstname")
-        lastname = request.POST.get("lastname")
-        email = request.POST.get("email")
+        # firstname = request.POST.get("firstname")
+        # lastname = request.POST.get("lastname")
+        # email = request.POST.get("email")
         username = request.POST.get("username")
         password = request.POST.get("password")
         confirm_password = request.POST.get("confirm_password")
@@ -136,10 +148,10 @@ def register(request):
 
         user = User.objects.create_user(
             username=username,
-            email=email,
+            # email=email,
             password=password,
-            first_name=firstname,
-            last_name=lastname,
+            # first_name=firstname,
+            # last_name=lastname,
         )
 
         user = authenticate(request, username=username, password=password)

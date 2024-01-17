@@ -21,6 +21,7 @@ class Product(models.Model):
         return self.name
 
 
+
 class Package(models.Model):
     weight = models.FloatField()
     date_of_receipt = models.DateTimeField()
