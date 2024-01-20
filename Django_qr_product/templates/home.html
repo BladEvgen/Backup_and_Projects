@@ -1,0 +1,53 @@
+{% extends "components/base.html" %}
+{% load django_app_filters_and_tags %}
+{% block title %} Home {% endblock title %}
+
+{% block main %}
+
+  <div class="container">
+    <div class="jumbotron mt-4">
+      {% if wines %}
+        <h1 class="display-4 text-center">Welcome to Our Wine Showcase</h1>
+
+        {% if user.is_staff %}
+          <p class="lead text-center">As a staff member, you can create new wines.</p>
+        {% else %}
+          <p class="lead text-center">Explore our diverse range of wines below:</p>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <div class="row justify-content-center">
+      {% if wines %}
+        {% for wine in wines %}
+          <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card mb-4">
+              {% if wine.picture and wine.picture.url %}  
+                <img src="{{ wine.picture.url }}" class="card-img-top img-fluid" alt="{{ wine.name }}" style="height:500px; object-fit: cover;">
+              {% else %}
+                <img src="https://cdn.dribbble.com/users/683081/screenshots/2728654/media/7bb2b47d0574d39b20354620e4fa50c8.png" class="card-img-top" alt="{{ wine.name }}">
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ wine.name }}</h5>
+                <p class="card-text">{{ wine.description|custom_cut:40 }}</p>
+                <a href="{% url 'wine_detail' wine_id=wine.id %}" class="btn btn-outline-danger btn-block">View Details</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="text-center">
+          <h2 class="display-5 font-weight-bold text-muted mb-3">
+            Oops! Nothing Found.
+          </h2>
+          <p class="text-secondary">
+            We're sorry, but it seems there's nothing here right now.
+          </p>
+          <p class="text-secondary">
+            Please check back soon for updates!
+          </p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock main %}

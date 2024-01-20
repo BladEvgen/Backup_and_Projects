@@ -1,0 +1,48 @@
+{% extends "components/base.html" %}
+{% load django_app_filters_and_tags %}
+{% load static %}
+
+{% block title %} Wine Detail {% endblock title %}
+
+{% block main %}
+<style>
+    .text-justify-custom {
+        text-align: justify;
+    }
+
+    .wine-image {
+        max-width: 100%;
+        height: auto;
+        max-width: 650px;
+        width: 100%;
+    }
+
+    .qr-code-image {
+        max-width: 100%;
+    }
+</style>
+
+<div class="container">
+    <h2 class="text-center">{{ wine.name }}</h2>
+
+    {% if wine.picture %}
+    <div class="text-center mb-4">
+        <img src="{{ wine.picture.url }}" alt="{{ wine.name }}" class="img-fluid wine-image" style="max-height: 600px; max-width:450px;" />
+    </div>
+    {% endif %}
+
+    <p class="text-center">Winery: <span class="fw-bold">{{ wine.winery.name }}</span></p>
+    <p class="text-center">Wine Category: <span class="fw-bold">{{ wine.category.name }}</span></p>
+    <p class="mt-3 text-justify-custom"><span class="fw-bold">Description:</span><br>{{ wine.description }}</p>
+    <p class="text-center">Production Date: <span class="fw-bold">{% formatted_date wine.production_date %}</span></p>
+    <p class="text-center">Expiration Date: <span class="fw-bold">{% formatted_date wine.production_date %}</span></p>
+    <hr>
+
+    {% if wine.qr_code %}
+    <div class="text-center mt-4">
+        <img src="{{ wine.qr_code.url }}" alt="QR Code" class="img-fluid qr-code-image">
+    </div>
+    {% endif %}
+</div>
+
+{% endblock main %}
