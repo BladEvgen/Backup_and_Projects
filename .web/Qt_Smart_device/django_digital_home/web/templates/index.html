@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        .table-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+        }
+
+        a:hover {
+            color: #1d72b8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="table-center">
+        <h1>ТЕМПЕРАТУРА</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Факт</th>
+                    <th>План</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Холодильная камера</td>
+                    <td>-7°C</td>
+                    <td>{{ params.temp_plan_high|default:"???" }}</td>
+                    <td><a href="{% url 'settings_change' %}?name=temp_plan_high&action=plus">+</a></td>
+                    <td><a href="{% url 'settings_change' %}?name=temp_plan_high&action=minus">-</a></td>
+                </tr>
+                <tr>
+                    <td>Морозильная камера</td>
+                    <td>-15°C</td>
+                    <td>{{ params.temp_plan_down|default:"???" }}</td>
+                    <td><a href="{% url 'settings_change' %}?name=temp_plan_down&action=plus">+</a></td>
+                    <td><a href="{% url 'settings_change' %}?name=temp_plan_down&action=minus">-</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
