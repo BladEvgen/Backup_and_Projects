@@ -23,6 +23,11 @@ urlpatterns = [
     path(
         "product_detail/<int:product_id>/", views.product_detail, name="product_detail"
     ),
+    path(
+        "create_category_item/",
+        views.CreateCategoryItemView.as_view(),
+        name="create_category_item",
+    ),
     path("modify_item/<int:item_id>/", views.modify_item, name="modify_item"),
     path("user_items/", views.user_items, name="user_items"),
     path("rating/<str:item_id>/<str:is_like>/", views.rating, name="rating"),
@@ -49,7 +54,43 @@ urlpatterns = [
         views.DeleteUsersView.as_view(),
         name="moderate_delete_users",
     ),
+    path(
+        "moderate/site/",
+        views.ModerateSiteView.as_view(),
+        name="ModerateSiteView",
+    ),
+    path(
+        "create/category-item/",
+        views.CreateCategoryItemView.as_view(),
+        name="create_category_item",
+    ),
+    # * Cart Urls
+    path("cart/", views.cart_detail, name="cart_detail"),
+    path("add_to_cart/<int:item_id>/", views.add_to_cart, name="add_to_cart"),
+    path(
+        "remove_from_cart/<int:item_id>/",
+        views.remove_from_cart,
+        name="remove_from_cart",
+    ),
+    path(
+        "update_cart_quantity/<int:item_id>/",
+        views.update_cart_quantity,
+        name="update_cart_quantity",
+    ),
+    # * Order views
+    path("checkout/", views.checkout, name="checkout"),
+    path("order_list/", views.order_list, name="order_list"),
+    path("order_detail/<int:order_id>/", views.order_detail, name="order_detail"),
+    path(
+        "order-detail-user/<int:order_id>/", views.order_detail_user, name="order_detail_user"
+    ),
+    path(
+        "update_order_status/<int:order_id>/",
+        views.update_order_status,
+        name="update_order_status",
+    ),
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

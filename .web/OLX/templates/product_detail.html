@@ -29,6 +29,13 @@
                 <span class="price fw-bold">{% digit_beautify product.price %}  ₸</span>
             {% endif %}
         </div>
+        <form class="d-flex justify-content-center mb-3" method="post" action="{% url 'add_to_cart' product.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary ">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+        </form>
+
     </div>
     {% if user.is_authenticated %}
             {%if request.user != product.author%}
@@ -89,10 +96,10 @@
         <div class="review-container">
             <div class="media mb-3 review-content">
                 <img src="{% if review.user.profile.avatar %}{{ review.user.profile.get_avatar_url }}
-                {% else %}{% static 'png/user.png' %}
+                {% else %}{% static 'media/png/user.png' %}
                 {% endif %}" class="mr-3 rounded-circle" alt="User Avatar" width="50">
                 <div class="media-body">
-                    <h5 class="mt-0">{{ review.user.username }}</h5>
+                    <h5 class="mt-0">{{ review.user.username }}</h5
                     {% if review.content|length > 200 %}
                         <p class="d-flex justify-content-center custom-justified">{{ review.content }}</p>
                     {% else %}

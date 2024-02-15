@@ -1,0 +1,14 @@
+{% extends "components/base.html" %}
+{% load django_app_filters_and_tags %}
+{% load static %}
+{% block main %}
+  <div class="container mt-5">
+    <h2>Order Confirmation</h2>
+
+    <div class="alert alert-success" role="alert">
+      <p>Thank you for your order! Your purchase has been confirmed.</p>
+    </div>
+
+    <p>View your order details: <a href="{% url 'order_detail_user' order.id %}">Order #{{ order.id }}</a></p>
+  </div>
+{% endblock main %}

@@ -1,0 +1,67 @@
+{% extends "components/base.html" %}
+{% load django_app_filters_and_tags %}
+{% load static %}
+
+{% block main %}
+  <div class="container mt-5">
+    <h2>Order Confirmation</h2>
+
+    <div class="alert alert-success" role="alert">
+      <p>Thank you for your order! Your purchase has been confirmed.</p>
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-header">
+        Order Details
+      </div>
+      <div class="card-body">
+        <p><strong>Order ID:</strong> {{ order.id }}</p>
+        <p><strong>Order Date:</strong> {{ order.date_created|date:"F d, Y H:i" }}</p>
+        <p><strong>Order Status:</strong> {{ order.status }}</p>
+        <p><strong>Buyer:</strong> {{ order.user.get_full_name }}</p>
+        <p><strong>Contact Information:</strong></p>
+        <ul>
+          <li>Last Name: {{ order.user.last_name }}</li>
+          <li>First Name: {{ order.user.first_name }}</li>
+          <li>Phone Number: {{ order.user.profile.phonenumber }}</li>
+          <li>Shipping Address: {{ order.user.profile.address }}</li>
+        </ul>
+        <p><strong>Product Information:</strong></p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>Product Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order_item in order.order_items.all %}
+              <tr>
+                <td>{{ order_item.item.title }}</td>
+                <td class="text-center">{{ order_item.quantity }} шт</td>
+                <td class="text-center">
+                  {{ order_item.item.discounted_price|default:order_item.item.price }}
+                  <i class="fa-solid fa-tenge-sign" data-toggle="tooltip" data-placement="top" title="Kazakhstani Tenge"></i>
+                </td>
+                <td class="text-center">{{ order_item.calculate_item_total }} <i class="fa-solid fa-tenge-sign"></i></td>
+              </tr>
+            {% endfor %}
+            <tr>
+              <td colspan="3" class="text-right"><strong>Total Price for All Products:</strong></td>
+              <td class="text-center">{{ order.get_total_price }} <i class="fa-solid fa-tenge-sign"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      });
+    </script>
+    
+  </div>
+{% endblock %}

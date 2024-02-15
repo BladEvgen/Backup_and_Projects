@@ -16,11 +16,20 @@
               {% if u != request.user %}
                   <div class="btn-group">
                   {% if u.profile.user.is_active %}
+                  {% check_access "UsersModeratePage_ban" as access %}
+                  {% if access %}
                     <a href="{% url 'moderate_ban_users' user_id=u.profile.id %}" class="btn btn-warning btn-sm me-5">Ban</a>
+                  {% endif %}
                   {% else %}
+                  {% check_access "UsersModeratePage_unban" as access %}
+                  {% if access %}
                     <a href="{% url 'moderate_unban_users' user_id=u.profile.id %}" class="btn btn-success btn-sm me-5">Unban</a>
                   {% endif %}
+                  {% endif %}
+                  {% check_access "UsersModeratePage_delete" as access %}
+                  {% if access %}
                   <a href="{% url 'moderate_delete_users' user_id=u.profile.id %}" class="btn btn-danger btn-sm delete-btn" data-username="{{ u.username }}">Delete</a>
+                  {% endif %}
                 </div>
               {% else %}
                 <span class="badge bg-secondary mx-2">You</span>

@@ -1,0 +1,4 @@
+11:00:04 13-02-2024 Username: "Anonymous_user" clicked on "/" (elapsed time: 0.02465 seconds)
+12:21:15 13-02-2024 Username: "Anonymous_user" clicked on "/" (elapsed time: 0.02848 seconds)
+12:21:16 13-02-2024 Username: "Anonymous_user" clicked on "/register/" (elapsed time: 0.01397 seconds)
+12:21:26 13-02-2024 Username: "evgen_3" clicked on "/register/" (elapsed time: 0.41895 seconds)

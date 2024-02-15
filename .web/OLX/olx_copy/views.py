@@ -15,10 +15,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import (
     TemplateView,
     View,
-    ListView,
-    DetailView,
-    DeleteView,
-    CreateView,
 )
 from django.contrib import messages
 from django.core.files.storage import default_storage
@@ -277,7 +273,7 @@ def modify_item(request, item_id):
 
         new_image = request.FILES.get("image")
         if new_image:
-            if item.image.name != "nodatafound.png":
+            if item.image.name and item.image.name != "nodatafound.png":
                 default_storage.delete(item.image.name)
 
             image_extension = new_image.name.split(".")[-1]
@@ -531,22 +527,23 @@ def create_chat_room(request):
 def check_access_slug(slug: str, redirect_url: str = "home"):
     def decorator(view_func):
         @wraps(view_func)
-        def _wrapped_view(self, *args, **kwargs):
-            user = self.request.user
+        def _wrapped_view(request, *args, **kwargs):
+            user = request.user if hasattr(request, "user") else request.request.user
+
             if not user.is_authenticated:
                 return redirect(reverse(redirect_url))
 
             try:
                 profile = models.UserProfile.objects.get(user=user)
             except models.UserProfile.DoesNotExist:
-                return HttpResponseForbidden("Invalid Rights for YOU")
+                return HttpResponseForbidden("Invalid Rights")
 
             is_access = profile.check_access(slug)
 
             if not is_access:
                 return redirect(reverse(redirect_url))
 
-            return view_func(self, *args, **kwargs)
+            return view_func(request, *args, **kwargs)
 
         return _wrapped_view
 
@@ -626,3 +623,169 @@ class DeleteUsersView(ModerateUsersView):
             messages.error(request, "User not found.")
 
         return redirect(reverse("moderate_users"))
+
+
+class CreateCategoryItemView(View):
+    template_name = "create_category_item.html"
+
+    @check_access_slug(slug="CreateItemCategory")
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+    @check_access_slug(slug="CreateItemCategory")
+    def post(self, request, *args, **kwargs):
+        title = request.POST.get("title")
+        slug = request.POST.get("slug")
+
+        if title and slug:
+            try:
+                models.CategoryItem.objects.create(title=title, slug=slug)
+                messages.success(request, "Category item created successfully.")
+                return redirect(reverse("moderate_category_items"))
+            except Exception as e:
+                messages.error(request, f"Error creating category item: {e}")
+        else:
+            messages.error(request, "Both title and slug are required.")
+
+        return render(request, self.template_name)
+
+
+class ModerateSiteView(View):
+    template_name = "moderate_site.html"
+
+    @check_access_slug(slug="ModerateSite")
+    def get(self, request, *args, **kwargs):
+        context = {}
+        return render(request, self.template_name, context)
+
+
+def cart_detail(request):
+    cart_items = models.Cart.objects.filter(user=request.user)
+    total_price = sum(cart_item.calculate_item_total() for cart_item in cart_items)
+
+    return render(
+        request,
+        "cart_detail.html",
+        {"cart_items": cart_items, "total_price": total_price},
+    )
+
+
+@login_required
+def add_to_cart(request, item_id):
+    item = get_object_or_404(models.Item, id=item_id)
+    cart_item, created = models.Cart.objects.get_or_create(user=request.user, item=item)
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+
+    return redirect("cart_detail")
+
+
+@login_required
+def remove_from_cart(request, item_id):
+    item = get_object_or_404(models.Item, id=item_id)
+    cart_item = models.Cart.objects.get(user=request.user, item=item)
+    cart_item.delete()
+
+    return redirect("cart_detail")
+
+
+@login_required
+def update_cart_quantity(request, item_id):
+    item = get_object_or_404(models.Item, id=item_id)
+    cart_item = models.Cart.objects.get(user=request.user, item=item)
+
+    if request.method == "POST":
+        quantity = int(request.POST.get("quantity"))
+        cart_item.quantity = quantity
+        cart_item.save()
+
+        total_price = cart_item.calculate_item_total()
+
+        return JsonResponse({"total": total_price})
+    else:
+        return JsonResponse({"error": "Invalid request"})
+
+
+@login_required
+def checkout(request):
+    user = request.user
+
+    if request.method == "POST":
+        user.first_name = request.POST.get("firstname")
+        user.last_name = request.POST.get("lastname")
+        user.save()
+
+        user.profile.phonenumber = request.POST.get("phonenumber")
+        user.profile.address = request.POST.get("address")
+        user.profile.save()
+
+        order = models.Order.objects.create(user=user)
+
+        cart_items = models.Cart.objects.filter(user=user)
+
+        for cart_item in cart_items:
+            item = cart_item.item
+            quantity = cart_item.quantity
+
+            order_item = models.OrderItem.objects.create(
+                order=order, item=item, quantity=quantity
+            )
+
+            cart_item.delete()
+
+        return render(request, "order_confirmation.html", {"order": order})
+
+    return render(
+        request, "checkout.html", {"user_profile": user.profile, "user": user}
+    )
+
+
+@login_required
+@check_access_slug("moder_seller")
+def order_list(request):
+    status_filter = request.GET.get("status", None)
+
+    if status_filter == "processing":
+        orders = models.Order.objects.filter(status="Processing")
+    elif status_filter == "confirmed":
+        orders = models.Order.objects.filter(status="Confirmed")
+    else:
+        orders = models.Order.objects.exclude(status__in=["Canceled", "Completed"])
+
+    total_orders_count = models.Order.objects.count()
+
+    return render(
+        request,
+        "OrderList.html",
+        {
+            "orders": orders,
+            "total_orders_count": total_orders_count,
+        },
+    )
+
+
+@login_required
+@check_access_slug("moder_seller")
+def order_detail(request, order_id):
+    order = get_object_or_404(models.Order, id=order_id)
+    return render(request, "OrderConfirmation_moderate.html", {"order": order})
+
+
+@login_required
+@check_access_slug("moder_seller")
+def update_order_status(request, order_id):
+    order = get_object_or_404(models.Order, id=order_id)
+
+    if request.method == "POST":
+        new_status = request.POST.get("new_status")
+        if new_status in [status[0] for status in models.Order.STATUS_CHOICES]:
+            order.status = new_status
+            order.save()
+
+    return render(request, "OrderConfirmation_moderate.html", {"order": order})
+
+
+def order_detail_user(request, order_id):
+    order = get_object_or_404(models.Order, id=order_id, user=request.user)
+    return render(request, "order_confirmation_user.html", {"order": order})
