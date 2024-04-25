@@ -1,13 +1,12 @@
-import os
 import uuid
-from django.contrib.auth.models import User
+
 from django.db import models
-from django.urls import reverse
 from django.utils import timezone
-from django.core.validators import FileExtensionValidator
-from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.text import slugify
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.core.validators import FileExtensionValidator
 
 
 def user_avatar_path(instance, filename):

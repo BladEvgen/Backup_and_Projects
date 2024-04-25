@@ -1,21 +1,9 @@
-from django.contrib import admin
 from django.apps import apps
+from django.contrib import admin
 from django.db import models as django_models
+
 from .models import (
-    CategoryItem,
-    TagItem,
-    Item,
-    Review,
-    Vip,
-    ItemRating,
-    UserProfile,
-    Room,
-    Message,
     RoomManager,
-    Action,
-    GroupExtend,
-    Order,
-    OrderItem,
 )
 
 admin.site.site_header = "Панель управления"

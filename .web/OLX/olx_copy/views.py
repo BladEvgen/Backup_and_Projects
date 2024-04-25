@@ -1,29 +1,29 @@
-from functools import wraps
 import os
 import datetime
+from functools import wraps
 from django.http import (
     Http404,
+    JsonResponse,
     HttpResponseRedirect,
     HttpResponseForbidden,
-    JsonResponse,
 )
-from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import (
-    TemplateView,
     View,
+    TemplateView,
 )
-from django.contrib import messages
-from django.core.files.storage import default_storage
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.urls import reverse
-from django.utils.translation import activate
-from olx_copy.utils import decorator_error_handler, password_check
 from olx_copy import models
 from django.db.models import Q
+from django.urls import reverse
+from django.contrib import messages
+from django.utils.translation import activate
+from django.core.files.storage import default_storage
+from olx_copy.utils import decorator_error_handler, password_check
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 class AboutView(TemplateView):
