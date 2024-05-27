@@ -1,6 +1,6 @@
-import datetime
-import sqlite3
 import re
+import sqlite3
+import datetime
 from pathlib import Path
 from time import perf_counter
 from django.shortcuts import render
