@@ -167,3 +167,7 @@ cython_debug/
 >>>>>>> be7aba8577ec6872b7e567d2c10cb1234b4292ec
 .DS_Store
 .DS_Store
+*.jpg
+/.web/OLX/log
+/.web/OLX/database
+*.db
